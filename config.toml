@@ -1,0 +1,39 @@
+baseurl = "https://ansible-learnfest.github.io/"
+contentdir    = "content"
+layoutdir     = "layouts"
+publishdir    = "public"
+title = "Ansible LearnFest"
+canonifyurls = true
+paginate = 10
+
+# Change the default theme to be use when building the site with Hugo
+theme = "hugo-theme-learn"
+
+# For search functionality
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[author]
+  name = "Götz, Christian"
+
+[params]
+  DateForm = "Mon, Jan 2, 2006"
+  Description = "An Ansible Automation Platform 2 learning experience"
+  Author = "Götz, Christian"
+  Ganalytics = "XX-00000000-0"
+  themeVariant = "red"
+  disableInlineCopyToClipBoard = "false"
+
+## Use those parameters with {{< param "param_name" >}}
+  deployment = "production"
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-home'></i> Homepage"
+url = "https://devsecops-workshop.github.io/"
+weight = 10
+
+[markup]
+#defaultMarkdownHandler = "blackfriday"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
