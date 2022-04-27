@@ -32,6 +32,6 @@ jobs:
         commitMessage: ${{ github.event.head_commit.message }}
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         external_repository: ansible-learnfest/ansible-learnfest.github.io
-        publish_branch: master
+        publish_branch: main
         publish_dir: ./public
         
