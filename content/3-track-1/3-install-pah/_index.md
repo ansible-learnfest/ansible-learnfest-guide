@@ -1,5 +1,5 @@
 +++
-title = "Configure Automation Controller"
+title = "Install Private Automation Hub"
 weight = 25
 +++
 
