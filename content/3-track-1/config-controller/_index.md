@@ -21,7 +21,7 @@ Okay, Automation Controller is up and running but pretty empty. In this task you
 * If you haven't done this before it might sound daunting, but fear not: [Here](https://ansible-labs-crew.github.io/ansible-controller-advanced/3-awx-collection-intro/) is a chapter from one of our labs, you just have to migrate it to your infrastructure.
 
 {{% notice tip %}}
-BTW you don't have to install the `ansible.controller` collection because it's already baked in into the EE we used before to deploy instances.
+BTW you don't have to install the `ansible.controller` collection because it's already baked into the EE we used before to deploy instances.
 {{% /notice %}}
 
 
@@ -44,9 +44,11 @@ You have seen how `ansible-navigator` knew which Execution Environment image to 
 
 
 **Goal**
-* The Playbook configured the objects needed to install and run Apache on instance 5
+* The Playbook configured the objects needed
+* The **Template** run installed and started Apache on instance 5
 * Opening the default webpage in a browser works.
 
 **Tips**
 * The collection/module documentation is here in [Automation Hub](https://console.redhat.com/ansible/automation-hub). Go to **Collections** and filter for `controller`.
+* If you would like to know what collections are in a certain Execution Environment, run `ansible-navigator collections` against the EE in question.
 * If you get confused by all the naming changes (`ansible.controller` in Automation Hub, `awx.awx` upstream, lot's of references to `Tower` in the docs)... don't be, all will finally be good! (TM)
