@@ -1,9 +1,9 @@
 +++
 title = "Extend Automation Mesh"
-weight = 30
+weight = 35
 +++
 
-## Task 4: Extend Automation Mesh
+## Task 5: Extend Automation Mesh
 
 **Prerequisites**
 * Automation Controller is running & accessible
