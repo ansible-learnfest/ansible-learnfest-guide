@@ -46,7 +46,7 @@ You have seen how `ansible-navigator` knew which Execution Environment image to 
 **Goal**
 * The Playbook configured the objects needed
 * The **Template** run installed and started Apache on instance 5
-* Opening the default webpage in a browser works.
+* Opening the default webpage on instance 5 in a browser works.
 
 **Tips**
 * The collection/module documentation is here in [Automation Hub](https://console.redhat.com/ansible/automation-hub). Go to **Collections** and filter for `controller`.

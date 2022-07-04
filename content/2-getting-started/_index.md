@@ -37,11 +37,15 @@ How did `ansible-navigator` know which execution environment to use? Have a look
 * Being able to login via SSH into the instances using the FQDN's and to become root
     * Example: `ssh -i "~/.ssh/id_rsa"  ec2-user@ec2-3-72-65-199.eu-central-1.compute.amazonaws.com`
 
+{{% notice warning %}}
+As the AWS deployment playbook is not setting up AWS Elastic IPs (because of costs) and AWS Route53 DNS entries, **don't stop and start the instances after Automation Controller has been installed!** Some components really don't like the change of IP/FQDN that comes with it... ;)
+{{% /notice %}}
+
 **Tips**
-* Podman login for pulling the execution environment image is your quay.io creds with encrypted password, not the RH Customer Portal creds.
+* Podman login for pulling the execution environment image is your quay.io credentials with encrypted password, not the RH Customer Portal credentials.
     * Instructions on how to get an employee account are [on the source](https://source.redhat.com/groups/public/customer-service/for_stakeholders/for_non_cs_associates_wiki/how_to_request_a_quay_employee_subscription) (Request a “Type 1” account)
     * Verify you can access the [execution environment](https://quay.io/repository/redhat_emp1/ee-ansible-ssa)
-* Using the prepared Ansible content you can tear down all instances and the VPC and start over: `ansible-navigator run aws-infra.yml -e remove=true`
+* Using the Ansible content from our repo you can tear down all instances and the VPC and start over: `ansible-navigator run aws-infra.yml -e remove=true`
 
 
 

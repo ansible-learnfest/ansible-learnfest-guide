@@ -8,6 +8,7 @@ weight = 10
 **Tasks:**
 * Install Automation Controller 
 * Write a Playbook using the `ansible.controller` collection to configure Automation Controller
-* Install Private Automation Hub, sync with Red Hat Automation Hub
+* Install Private Automation Hub
+* Work with Private Automation Hub
 * Extend Automation Mesh
 * Optional: Extending to multi node/cluster (Needs separate DB)

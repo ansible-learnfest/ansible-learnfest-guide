@@ -8,13 +8,14 @@ weight = 15
 You should now have access to your AWS instances and you should be able to SSH into them. It’s time to deploy Ansible Automation Platform 2.2! We’ll start with installing Automation Controller on your instance 1.
 
 **Prerequisites**
+* Running instances on AWS
 * Able to SSH into your instances and to become root
 * A Red Hat Customer Portal account with an AAP subscription
 
 **Tasks**
-* SSH into your instance number 1 to run the installer there.
+* SSH into your instance number 1 (`demo1` if you didn't change the main vars) to run the installer there.
 * Become `root`: `sudo -i` 
-* Download the **Ansible Automation Platform 2.2.0 Setup Bundle** installer from Customer Portal to your instance. 
+* Download the latest **Ansible Automation Platform 2.2.0 Setup Bundle** installer from Customer Portal to your instance. 
     * The link to the download location can also be found in the installation docs. 
     * Tip: Copy the download link and use `curl` with single quotes around the link and the `-o <filename>` option to save to file. 
 
