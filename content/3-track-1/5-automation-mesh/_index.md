@@ -37,7 +37,7 @@ Right now you have to execution nodes, one is the Controller as hybrid node, the
 
 * Add a new **Instance Group**
 * Add the Execution Node to the **Instance Node**
-* You can configure on **Organization, Project and Template** level to use a specific Execution Node. Do this for the **Template** installing PHP.
+* You can configure on **Organization, Inventory** and **Template** level to use a specific Execution Node. Do this for the **Template** installing PHP or the **Inventory** with the managed node. Or play around, it's a LearnFest after all.
 * Launch the **Template** and make sure it run on the Execution Node.
 
 **Goal**
