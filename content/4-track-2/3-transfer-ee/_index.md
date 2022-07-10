@@ -8,7 +8,7 @@ weight = 55
 ### Prerequisites
 
 * a working execution environment
-* private automation hub
+* private automation hub to store your EE
 
 ### Tasks
 
