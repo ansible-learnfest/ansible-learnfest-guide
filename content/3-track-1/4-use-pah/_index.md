@@ -43,7 +43,7 @@ The last thing you have to setup is to configure the Organization (`default` her
 
 Most of this is well documented [here](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.1/html-single/managing_red_hat_certified_and_ansible_galaxy_collections_in_automation_hub/index)
 
-Sync collections from Red Hat Automation Hub
+#### Sync collections from Red Hat Automation Hub
 * Go to `console.redhat.com` and open **Ansible Automation Platform->Automation Hub->Collections**. Here you **could enable/disable the sync of certain collections but there is a bug as of now!** We'll give you a working URL to sync all content as a workaround.
 * What you need to do is to get the autentication token and configure it in your PAH: 
   * In Red Hat Automation Hub Go to **Connect to Hub** and copy the **Offline Token**
@@ -53,7 +53,7 @@ Sync collections from Red Hat Automation Hub
     * **Token** the token you copied from RH AH
     * Click **Save** and then hit **Sync**. This will sync all collections from Red Hat Automation Hub to your Private Automation Hub.
 
-Sync selected comunity collections from Ansible Galaxy
+#### Sync selected comunity collections from Ansible Galaxy
 * Galaxy is configured as the remote `community` out of the box
 * To sync collections:
   * Create a regular requirements.yml file pointing to the collection you want, we'll use the one from the docs:
@@ -71,6 +71,12 @@ collections:
   * In the **Remote** overview tab click **Sync** for the `community` remote
 
 Verify the sync of the collections in **Collections->Collections**, switch the repositories with the dropdown at the top. There should be a lot of content in the `Red Hat Certified` repo and one collection in the `Community` repo. 
+
+#### Push Images to PAH Registry
+
+* As test push a local image to PAH
+* Example: `podman push --tls-verify=false quay.io/redhat_emp1/ee-ansible-ssa <PAH-HOST>/ee-ansible-ssa`
+* Check in PAH under **Execution Environments**
 
 ### Test **Private Automation Hub** Integration
 
