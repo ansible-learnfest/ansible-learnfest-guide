@@ -5,7 +5,7 @@ weight = 35
 
 ## Task 5: Extend Automation Mesh
 
-Even an all-in-one Automation Controller installation contains an Automation Mesh, in this case it's living on the Controller node itself. In this case the node type is called "hybrid".
+Even a single-node Automation Controller installation contains an Automation Mesh, in this case it's living on the Controller node itself. In this case the node type is called "hybrid", although you can install node types "control" but then you need execution nodes again. 
 
 Go and check this on your Controller under **Topology View**. This section is about extending the Automation Mesh with a second Execution Node.
 
