@@ -3,29 +3,36 @@ title = "The VSCode extension"
 weight = 45
 +++
 
-## Task 1: Learn about the VSCode extension 
+## Task 1: Learn about the VSCode extension
 
 We highly recommend making yourself familiar with VSCode and the Ansible extension. Even if you’re not planning to use it as your daily driver, it is good to know how it works to explain and show the benefit to customers.
 
-**Prerequisites**
+### Prerequisites
 
+* You should have a Linux workstation setup
+* Install `ansible`, `ansible-lint` and `podman` on your Linux workstation
+* Install `ansible-navigator` for using execution environments
 
-**Tasks**
+### Tasks
 
-* Install VSCode [https://code.visualstudio.com/](https://code.visualstudio.com/) 
-* Install the Ansible extension: [https://marketplace.visualstudio.com/items?itemName=redhat.ansible](https://marketplace.visualstudio.com/items?itemName=redhat.ansible) 
-* Install ansible-navigator
-* Configure the VSCode extension to use EE
+* Install VSCode [https://code.visualstudio.com/](https://code.visualstudio.com/)
+* Install the Ansible extension: [https://marketplace.visualstudio.com/items?itemName=redhat.ansible](https://marketplace.visualstudio.com/items?itemName=redhat.ansible)
 * Create a playbook/role/collection
 * Get familiar with the VSCode extension features
-    * tab completion
-    * syntax highlighting
-    * tool tips for modules: hover over and FQCN, Ctrl+Click on an FQCN to open documentation
-    * Ctrl+Space for module parameters, e.g. add a task calling ansible.builtin.yum and use Ctrl+Space to see all module attributes and attribute parameters
-    * Make syntax error and notice errors in the Problem pane (Ctrl+m): you might have to make sure ansible-lint is enabled and notice it is only checking when you save a file
+  * tab completion
+  * syntax highlighting
+  * tool tips for modules: hover over a FQCN, Ctrl+Click on a FQCN to open documentation
+  * Ctrl+Space for module parameters, e.g. add a task calling ansible.builtin.yum and use Ctrl+Space to see all module attributes and attribute parameters
+  * Make syntax error and notice errors in the Problem pane (Ctrl+m): you might have to make sure ansible-lint is enabled and notice it is only checking when you save a file
 
+### Goal
 
-**Goal**
+Start VSCode and get familiar with its features.
 
+### Tips
 
-**Tips**
+Although VSCode of course runs on Linux, Mac and Windows, there are some extra tasks to be done to get Ansible working on Windows. It's beyond the scope of this manual to provide detailed instructions on how to setup Podman and Ansible on Windows.
+
+### Challenge Tasks
+
+Try to configure VSCode to use Ansible inside an execution environment.
