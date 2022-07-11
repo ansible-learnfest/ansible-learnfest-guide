@@ -19,11 +19,20 @@ We highly recommend making yourself familiar with VSCode and the Ansible extensi
 * Install the Ansible extension: [https://marketplace.visualstudio.com/items?itemName=redhat.ansible](https://marketplace.visualstudio.com/items?itemName=redhat.ansible)
 * Create a playbook/role/collection
 * Get familiar with the VSCode extension features
+  * Set **Language Mode** to Ansible
+    * Either on the VSCode status bar or put this into `~/.config/Code/User/settings.json`:
+```json
+"files.associations": {
+        "*.yml": "ansible",
+        "*.yaml": "ansible"
+    },
+```
+
   * tab completion
   * syntax highlighting
-  * tool tips for modules: hover over a FQCN, Ctrl+Click on a FQCN to open documentation
-  * Ctrl+Space for module parameters, e.g. add a task calling ansible.builtin.yum and use Ctrl+Space to see all module attributes and attribute parameters
-  * Make syntax error and notice errors in the Problem pane (Ctrl+m): you might have to make sure ansible-lint is enabled and notice it is only checking when you save a file
+  * tool tips for modules: hover over a modul FQCN, `Ctrl+Click` on a modul FQCN to open documentation
+  * `Ctrl+Space` for module parameters, e.g. add a task calling `ansible.builtin.yum` and use `Ctrl+Space` to see all module attributes and attribute parameters
+  * Make syntax error and notice errors in the Problem pane (`Ctrl+Shift+m`): you might have to make sure `ansible-lint` is enabled and notice it is only checking when you save a file
 
 ### Goal
 
