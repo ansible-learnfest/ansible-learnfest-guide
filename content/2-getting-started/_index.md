@@ -26,6 +26,7 @@ So off to the first tasks: deploy the needed RHEL instances into an AWS account.
   * Update the number of instances in `group_vars/all/main.yml` to `5` (`instance_total:`)
   * Change the name prefix (`instance_name:`) of the instances if you want 
   * The Playbook will use the SSH key `~/.ssh/id_rsa.pub` by default, if this key doesn't exist or you want to use another key, change `ec2_key_pair:`
+  * run the playbook with `ansible-navigator run cloud-infra.yml`
 
 {{% notice tip %}}
 How did `ansible-navigator` know which execution environment to use? Have a look at the `ansible-navigator.yml` config file... 
