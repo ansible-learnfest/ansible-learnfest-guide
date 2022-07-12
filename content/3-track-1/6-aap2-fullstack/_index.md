@@ -102,14 +102,14 @@ registry_password='<registry token or password'
 receptor_listener_port=27199
 
 automationhub_admin_password='<password>'
-automationhub_pg_host='instance-1'
+automationhub_pg_host='<instance-1>'
 automationhub_pg_port=5432
 automationhub_pg_database='automationhub'
 automationhub_pg_username='automationhub'
 automationhub_pg_password='<password>'
 automationhub_pg_sslmode='prefer'
 
-automationcatalog_pg_host='instance-1'
+automationcatalog_pg_host='<instance-1>'
 automationcatalog_pg_port=5432
 automationcatalog_pg_database='automationservicescatalog'
 automationcatalog_pg_username='automationservicescatalog'
