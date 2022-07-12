@@ -75,6 +75,7 @@ Verify the sync of the collections in **Collections->Collections**, switch the r
 #### Push Images to PAH Registry
 
 * As test push a local image to PAH
+* First login to the PAH registry: `podman login  --tls-verify=false <PAH-HOST>`
 * Example: `podman push --tls-verify=false quay.io/redhat_emp1/ee-ansible-ssa <PAH-HOST>/ee-ansible-ssa`
 * Check in PAH under **Execution Environments**
 
