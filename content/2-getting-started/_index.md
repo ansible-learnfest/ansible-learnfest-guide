@@ -8,7 +8,7 @@ weight = 5
 You'll run the LearnFest tasks on RHEL instances on AWS. So before starting with AAP you have to stand up the needed instances.
 
 {{% notice tip %}}
-The guide has been tested using a blank AWS environment sandbox Red Hatters can order in RHPDS. But everything should work the same in a regular AWS account with access tho the RHEL 8 marketplace AMIs. 
+The guide has been tested using a blank AWS environment sandbox Red Hatters can order in RHPDS. But everything should work the same in a regular AWS account with access tho the RHEL 8 marketplace AMIs.
 {{% /notice %}}
 
 ## Deploy RHEL Instances into AWS Account
@@ -24,12 +24,12 @@ So off to the first tasks: deploy the needed RHEL instances into an AWS account.
 * On your `ansible-navigator` machine: Clone [https://github.com/ansible-learnfest/playbooks-infra.git](https://github.com/ansible-learnfest/playbooks-infra.git) and change into the new directory.
 * Follow the instructions in the repo's [README.md](https://github.com/ansible-learnfest/playbooks-infra/blob/main/README.md) file to deploy the LearnFest base environment instances
   * Update the number of instances in `group_vars/all/main.yml` to `5` (`instance_total:`)
-  * Change the name prefix (`instance_name:`) of the instances if you want 
+  * Change the name prefix (`instance_name:`) of the instances if you want
   * The Playbook will use the SSH key `~/.ssh/id_rsa.pub` by default, if this key doesn't exist or you want to use another key, change `ec2_key_pair:`
   * run the playbook with `ansible-navigator run cloud-infra.yml`
 
 {{% notice tip %}}
-How did `ansible-navigator` know which execution environment to use? Have a look at the `ansible-navigator.yml` config file... 
+How did `ansible-navigator` know which execution environment to use? Have a look at the `ansible-navigator.yml` config file...
 {{% /notice %}}
 
 **Goals**
@@ -38,16 +38,8 @@ How did `ansible-navigator` know which execution environment to use? Have a look
 * Being able to login via SSH into the instances using the FQDN's and to become root
     * Example: `ssh -i "~/.ssh/id_rsa"  ec2-user@ec2-3-72-65-199.eu-central-1.compute.amazonaws.com`
 
-{{% notice warning %}}
-As the AWS deployment playbook is not setting up AWS Elastic IPs (because of costs) and AWS Route53 DNS entries, **don't stop and start the instances after Automation Controller has been installed!** Some components really don't like the change of IP/FQDN that comes with it... ;)
-{{% /notice %}}
-
 **Tips**
 * Podman login for pulling the execution environment image is your quay.io credentials with encrypted password, not the RH Customer Portal credentials.
     * Instructions on how to get an employee account are [on the source](https://source.redhat.com/groups/public/customer-service/for_stakeholders/for_non_cs_associates_wiki/how_to_request_a_quay_employee_subscription) (Request a “Type 1” account)
     * Verify you can access the [execution environment](https://quay.io/repository/redhat_emp1/ee-ansible-ssa)
 * Using the Ansible content from our repo you can tear down all instances and the VPC and start over: `ansible-navigator run aws-infra.yml -e remove=true`
-
-
-
-
