@@ -17,11 +17,11 @@ So in this section you'll build the whole thing.
 **Prerequisites**
 * Delete your AWS environment
 
-`ansible-navigator run aws-infra.yml -m stdout -e remove=true`
+`ansible-navigator run cloud-infra.yml -m stdout -e remove=true`
 
 * and start over with new instances:
 
-`ansible-navigator run aws-infra.yml -m stdout`
+`ansible-navigator run cloud-infra.yml -m stdout`
 
 * Open the instances security groups so we don't have to tweak filter rules for now. **Disclaimer: Only for lab use, not in real life!**
 * In the AWS console for each of your instances
