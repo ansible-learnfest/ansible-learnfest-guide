@@ -55,12 +55,26 @@ into ./ansible.cfg
 * Run the installer
 * Get a coffee. Or two.
 
+After the installation has finished, **Private Automation Hub** and **Automation Services Catalog** are configured for SSO. So to be able to login to the UIs, you have to configure a user with the proper roles in **RH SSO**.
+
+* Create an admin user for PAH and catalog in the RH SSO Admin UI (`https://<instance>:8443`): 
+  * **Manage** -> **Users** -> **View all users**
+  * Create user **aapadmin**
+  * **Save**
+  * Set a password in **Credentials**
+  * In **Role Mappings** for this user: In **Client Roles** choose `automation-catalog`
+    * Add role `catalog-admin`
+  * For **Client Role** `automation-hub`
+    * Add role `hubadmin`
+ 
+ Now you have a user with admin permissions for PAH and Catalog.
+
 **Goal**
 * Access to the web UIs on all four instances:
-  * Automation Controller
-  * Private Automation Hub
-  * Automation Services Catalog
-  * RH SSO Admin UI (Port 8443)
+  * Automation Controller (user `admin`, password as set in inventory)
+  * Private Automation Hub (SSO user)
+  * Automation Services Catalog (sso user)
+  * RH SSO Admin UI (Port 8443, user `admin`, password as set in inventory)
 
 **Tips**
 

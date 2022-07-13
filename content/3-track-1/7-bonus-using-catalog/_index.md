@@ -21,13 +21,6 @@ Remember it's early days; Catalog is in Tech Preview!
 
 **Tasks**
 
-* Create a Catalog user in RH SSO Admin UI (`https://<instance>:8443`): 
-  * **Manage** -> **Users** -> **View all users**
-  * Create user **catalog-admin**
-  * **Save**
-  * Set a password in **Credentials**
-  * In **Role Mappings** for this user: In **Client Roles** choose `automation-catalog`
-  * Add role `catalog-admin`
 * Start with Automation Services Catalog 
   * Log in with the new user
   * Check under **Platforms** **Automation Controller** status is `Available`, click the circular `Refresh` icon.
