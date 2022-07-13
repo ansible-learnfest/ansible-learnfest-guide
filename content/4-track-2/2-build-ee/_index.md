@@ -23,6 +23,10 @@ weight = 50
 * Use environment variables to provide your Azure credentials and write a playbook using the azure.azcollection to create objects in Azure - you can get Azure credentials from RHPDS’ open environments
 * you can find an example playbook in the [playbook-infra](https://github.com/ansible-learnfest/playbooks-infra) project
 
+{{% notice note %}}
+In a production environment we typically recommend to use the `ee-minimal-rhel8` as a base image and only add the collections we specifically need. To make this lab not too complex, we decided to use the EE supported as a base image though.
+{{% /notice %}}
+
 ### Goal
 
 * Use your execution environment to create a virtual machine in Azure
