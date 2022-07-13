@@ -16,7 +16,12 @@ weight = 50
   * Add a community collection e.g. `containers.podman`
   * Add a supported content collection e.g. `azure.azcollection`
   * Experiment with the other options, e.g. adding an RPM or Python package
-  * Use `ansible-builder` to build the EE
+  * Use `ansible-builder` to build the EE, for example:
+
+```bash
+ansible-builder -f /path/to/your/definition.yml -t yourname:1.0.0
+```
+
 * Configure `ansible-navigator` to use the previously created EE either by specifying it on the command line or by creating an `ansible-navigator.yml` configuration file
 * Inspect your EE by using `ansible-navigator`, e.g. get the list of included collections, ansible versions etc.
 * Run a playbook with your EE and verify everything works as expected
