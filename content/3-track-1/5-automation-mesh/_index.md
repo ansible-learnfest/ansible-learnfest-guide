@@ -33,7 +33,7 @@ peers=execution_nodes
 
 ### Use the Execution Node
 
-Right now you have to execution nodes, one is the Controller as hybrid node, the other is the new Execution Node. Now use the node by configuring Controller in a way it executes jobs for your managed node on the new Execution Node.
+Right now you have execution nodes, one is the Controller as a hybrid node, the other is the new Execution node. Now use the node by configuring the Controller to execute the jobs for your managed node on the new Execution node.
 
 * Add a new **Instance Group**
 * Add the Execution Node to the **Instance Node**
