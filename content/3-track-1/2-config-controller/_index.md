@@ -14,7 +14,7 @@ Okay, Automation Controller is up and running but pretty empty. In this task you
 **Tasks**
 * Create a Playbook using the `ansible.controller` collection to create these objects in your Automation Controller:
   * **Inventory**
-  * **Hosts** in the inventory, assuming you didn't change it this should only be your instance number 5
+  * **Hosts** in the inventory
   * **Machine credentials** to connect to your managed host
   * **Project** to pull Ansible content from
   * **Template** to install Apache on the managed hosts 
@@ -29,7 +29,8 @@ Okay...
 * On your system create a new directory next to the one with the cloned git repo from deploying the AWS instances. 
 * In the new directory create a Playbook resembling the one from our lab. 
   * **Note**: We are using the supported collection `ansible.controller` here, upstream is called `awx.awx`.
-  * Change the `loop` in the creating hosts section to only contain the public FQDN of your Controller instance.
+  * Change the `loop` in the creating hosts section to only contain the public FQDN of your managed node instance.
+    * Assuming you didn't change it this should only be your instance number 5
   * Make sure `ssh_key_data:` points to the SSH key you use to connect to the instances 
 
 {{% notice tip %}}
