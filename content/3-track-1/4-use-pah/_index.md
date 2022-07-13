@@ -22,7 +22,7 @@ Let's start, as the docs for this are distributed over some places we'll give so
 
 ### Integrate **Private Automation Hub** into Automation Controller
 
-* In you PAH go to **Collections->API token management**, hit **Load Token** and copy the token. Put it somewhere, the token will change every time you have to get it this way again!
+* In your PAH go to **Collections->API token management**, hit **Load Token** and copy the token. Put it somewhere, the token will change every time you have to get it this way!
 * In Controller, go to **Resources->Credentials** and **Add** three new credentials:
   * Name them **PAH community**, **PAH certified** and **Pah published**
   * All belong to the **Organisation** `default`

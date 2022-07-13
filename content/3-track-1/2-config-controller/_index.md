@@ -14,7 +14,7 @@ Okay, Automation Controller is up and running but pretty empty. In this task you
 **Tasks**
 * Create a Playbook using the `ansible.controller` collection to create these objects in your Automation Controller:
   * **Inventory**
-  * **Hosts** in the inventory, with your instance number 5 only
+  * **Hosts** in the inventory, assuming you didn't change it this should only be your instance number 5
   * **Machine credentials** to connect to your managed host
   * **Project** to pull Ansible content from
   * **Template** to install Apache on the managed hosts 
@@ -74,7 +74,7 @@ You have seen how `ansible-navigator` knew which Execution Environment image to 
       inventory: Learnfest Inventory
       state: present
     loop:
-      - <controller-host>
+      - <instance-5>
   - name: Machine Credentials
     ansible.controller.credential:
       name: Learnfest Credentials
