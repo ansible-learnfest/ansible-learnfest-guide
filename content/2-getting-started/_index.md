@@ -42,4 +42,4 @@ How did `ansible-navigator` know which execution environment to use? Have a look
 * Podman login for pulling the execution environment image is your quay.io credentials with encrypted password, not the RH Customer Portal credentials.
     * Instructions on how to get an employee account are [on the source](https://source.redhat.com/groups/public/customer-service/for_stakeholders/for_non_cs_associates_wiki/how_to_request_a_quay_employee_subscription) (Request a “Type 1” account)
     * Verify you can access the [execution environment](https://quay.io/repository/redhat_emp1/ee-ansible-ssa)
-* Using the Ansible content from our repo you can tear down all instances and the VPC and start over: `ansible-navigator run aws-infra.yml -e remove=true`
+* Using the Ansible content from our repo you can tear down all instances and the VPC and start over: `ansible-navigator run cloud-infra.yml -e remove=true`
