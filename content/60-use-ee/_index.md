@@ -12,11 +12,22 @@ weight = 60
 
 ### Tasks
 
+## Configure EE in Controller
+- Check the **Credential** Automation Hub Container Registry points to the PAH
+- Go to `Execution Environments`
+- Configure the new EE
+  - **Name**: ee-ansible-demo
+  - **Image**: pah.<LABID>.<SUBDOMAIN>.opentlc.com/ee-ansible-demo:latest
+  - **Credential**: Automation Hub Container Registry
+
 * Create registry credentials in controller
 * Create the EE in controller
 * Create a job template using the EE
 * Test a playbook with the collection you added to the EE, e.g. perform an action in Azure
 * There is an example playbook available in the [playbook-infra](https://github.com/ansible-learnfest/playbooks-infra) project
+
+## Create Project
+- Create a new Project to point to https://github.com/ansible-learnfest/ee-flow.git
 
 ### Challenge tasks
 

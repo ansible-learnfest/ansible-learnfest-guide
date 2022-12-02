@@ -11,28 +11,26 @@ weight = 50
 
 ### Tasks
 
+#### Checkout repo
+
+Clone the repo to your VS Code terminal
+
+```bash
+git clone https://github.com/ansible-learnfest/ee-flow.git
+```
+
+#### Login to registry.redhat.io
+
+```bash
+podman login registry.redhat.io
+```
+
 #### Build Execution Environment
 
-* Overview: Create an execution environment with the following requirements
-  * Base image is `ee-supported-rhel8`
-  * Add a community collection e.g. `containers.podman`
-  * Add a supported content collection e.g. `azure.azcollection`
-  * Experiment with the other options, e.g. adding an RPM or Python package
+* In the repo change to the `ansible-builder` directory
+* Run `ansible-builder build -f ee-ansible-demo.yml -t ee-ansible-demo:0.1.0 -v 3`
+* Experiment with the other options, e.g. adding an RPM or Python package
 
-
-* Create the needed definition files to build the EE according to the specs above.
-  * You can adapt the files from [here](https://gitlab.com/cjung/ansible-ee-intro/-/tree/main/ansible-builder) (from the `Simple EE example` linked to in the **Tips** section).
-  * In your EE definition file set the base image to (Red Hat Registry access required)
-
-    ```
-    build_arg_defaults:
-    EE_BASE_IMAGE: 'registry.redhat.io/ansible-automation-platform-22/ee-minimal-rhel8'
-    ```
-  * Use `ansible-builder` to build the EE, for example:
-
-      ```bash
-      ansible-builder -f /path/to/your/definition.yml -t yourname:1.0.0
-      ```
 #### Use the Execution Environment
 
 * Configure `ansible-navigator` to use the previously created EE either by specifying it on the command line or by creating an `ansible-navigator.yml` configuration file (you have one from Track 1).
