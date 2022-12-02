@@ -12,11 +12,11 @@ The LearnFest is structured into two tracks, so this is coming your way:
 **General Prerequisites:**
 * Access to PC with Ansible (esp `ansible-navigator`)
 * Credentials/tokens to download the AAP2 installer and access the Red Hat Container registry and Red Hat Automation Hub
-  * This usually means an account to the Red Hat Customer Portal
+  * This usually means an account to the Red Hat Customer Portal 
 * Optional: Write access to a GitLab or GitHub repository
 
 **Tasks:**
-* Install Automation Controller
+* Install Automation Controller 
 * Write a Playbook using the `ansible.controller` collection to configure Automation Controller
 * Install Private Automation Hub
 * Work with Private Automation Hub
@@ -38,4 +38,9 @@ The LearnFest is structured into two tracks, so this is coming your way:
 * Change the EE
 * Discuss version pinning, requirements management etc.
 
+<!-- ## Track 3 “Advanced for Gurus”
+* Automation Services Catalog
+* SSO -->
+
 **Let's go!**
+
