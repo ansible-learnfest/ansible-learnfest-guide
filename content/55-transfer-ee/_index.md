@@ -3,7 +3,7 @@ title = "Transfer Execution Environment"
 weight = 55
 +++
 
-## Task 3: Transfer your EE
+## Transfer your EE
 
 ### Prerequisites
 

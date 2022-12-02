@@ -3,7 +3,7 @@ title = "Build an execution environment"
 weight = 50
 +++
 
-## Task 2: Build an execution environment
+## Build an execution environment
 
 ### Prerequisites
 

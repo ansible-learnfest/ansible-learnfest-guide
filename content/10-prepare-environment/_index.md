@@ -1,6 +1,6 @@
 +++
 title = "Prepare Environment"
-weight = 5
+weight = 10
 +++
 
 ## Setup your LearnFest Environment

@@ -3,7 +3,7 @@ title = "Use the EE in controller"
 weight = 60
 +++
 
-## Task 4: Use the EE in controller
+## Use the EE in controller
 
 ### Prerequisites
 

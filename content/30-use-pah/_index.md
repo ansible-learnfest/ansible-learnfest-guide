@@ -3,7 +3,7 @@ title = "Using Private Automation Hub"
 weight = 30
 +++
 
-## Task 4: Using Private Automation Hub
+## Using Private Automation Hub
 
 **Prerequisites**
 * Automation Controller is running & accessible
@@ -27,13 +27,13 @@ Let's start, as the docs for this are distributed over some places we'll give so
   * Name them **PAH community**, **PAH certified** and **Pah published**
   * All belong to the **Organisation** `default`
   * Credential Type is **Ansible Galaxy/Automation Hub API Token**
-  * Look up the **Galaxy Server URL** for each in PAH: In **Collections->Repository Management** lookup the **Repo URL** for **community**, **published** and **rh-certified** and put them in respectively.   
+  * Look up the **Galaxy Server URL** for each in PAH: In **Collections->Repository Management** lookup the **Repo URL** for **community**, **published** and **rh-certified** and put them in respectively.
   * You have created the API token already, paste in into the credentials
   * As your PAH is using a self-signed certificate, disable the certificate verification:
     * Go to **Settings->Jobs Settings**, click **Edit** and set `Ignore Ansible Galaxy SSL Certificate Verification` to **On**
-  
-The last thing you have to setup is to configure the Organization (`default` here) to use the PAH credentials and the order it searches them:  
-  
+
+The last thing you have to setup is to configure the Organization (`default` here) to use the PAH credentials and the order it searches them:
+
   * Go to **Access->Organizations**, choose the `default` Organization and click **Edit**
   * In `Galaxy Credentials` remove `Ansible Galaxy` and add our three PAH credentials
   * Note how you could change the order here
@@ -45,10 +45,10 @@ Most of this is well documented [here](https://access.redhat.com/documentation/e
 
 #### Sync collections from Red Hat Automation Hub
 * Go to `console.redhat.com` and open **Ansible Automation Platform->Automation Hub->Collections**. Here you **could enable/disable the sync of certain collections but there is a bug as of now!** We'll give you a working URL to sync all content as a workaround.
-* What you need to do is to get the autentication token and configure it in your PAH: 
+* What you need to do is to get the autentication token and configure it in your PAH:
   * In Red Hat Automation Hub Go to **Connect to Hub** and copy the **Offline Token**
   * In PAH go to **Collections->Repository management->Remote**
-  * Edit the `rh-certified` remote: 
+  * Edit the `rh-certified` remote:
     * **URL** `https://console.redhat.com/api/automation-hub/content/published/
     * **Token** the token you copied from RH AH
     * Click **Save** and then hit **Sync**. This will sync all collections from Red Hat Automation Hub to your Private Automation Hub.
@@ -63,14 +63,14 @@ collections:
   - name: geerlingguy.php_roles
     version: 0.9.3
     source: https://galaxy.ansible.com
-```   
+```
   * Go to Repo Management, click the **Remote** tab again
   * Edit the `community` remote
   * In **YAML requirements** upload the  `requirements.yml` file from your local machine.
   * Click **Save**
   * In the **Remote** overview tab click **Sync** for the `community` remote
 
-Verify the sync of the collections in **Collections->Collections**, switch the repositories with the dropdown at the top. There should be a lot of content in the `Red Hat Certified` repo and one collection in the `Community` repo. 
+Verify the sync of the collections in **Collections->Collections**, switch the repositories with the dropdown at the top. There should be a lot of content in the `Red Hat Certified` repo and one collection in the `Community` repo.
 
 #### Push Images to PAH Registry
 
