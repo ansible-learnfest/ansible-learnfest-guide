@@ -16,7 +16,6 @@ Value of var "deployment" is: {{< param "deployment" >}}
 Text here
 {{% /notice %}}
 
-
 {{% notice warning %}}
 Text here
 {{% /notice %}}

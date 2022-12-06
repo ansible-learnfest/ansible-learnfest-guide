@@ -24,21 +24,21 @@ Most of this is well documented [here](https://access.redhat.com/documentation/e
 
 #### Sync collections from Red Hat Automation Hub
 
-* Go to `console.redhat.com` and open **Ansible Automation Platform->Automation Hub->Collections**. Here you can enable/disable the sync of certain collections. TODO: Add instruction on how to get your personal sync URL
+* Go to `console.redhat.com` and open **Ansible Automation Platform** -> **Automation Hub** -> **Collections**. Here you can enable/disable the sync of certain collections.
 
 * What you need to do is to get the authentication token and configure it in your PAH:
 
-  * In Red Hat Automation Hub Go to **Connect to Hub** and copy the **Offline Token**
+  * In Red Hat Automation Hub go to **Connect to Hub** we will need the **Offline Token** and the **Server URL**
 
-  * In PAH go to **Collections->Repository management** -> **Remote**
+  * In your private automation hub go to **Collections** -> **Repository management** -> **Remote**
 
   * Edit the `rh-certified` remote:
 
-    * **URL** `TODO add how to add personal sync list
+    * **URL** paste the **Server URL** from the Red Hat Automation Hub
 
     * **Token** the token you copied from RH AH
 
-    * Click **Save** and then hit **Sync**. This will sync all collections from Red Hat Automation Hub to your Private Automation Hub.
+    * Click **Save** and then hit **Sync**. This will sync all enabled and updated collections from Red Hat Automation Hub to your Private Automation Hub.
 
 #### Sync selected community collections from Ansible Galaxy
 
@@ -52,6 +52,7 @@ collections:
   - name: geerlingguy.php_roles
     version: 0.9.3
     source: https://galaxy.ansible.com
+  - name: containers.podman
 ```
 
 * Go to Repo Management, click the **Remote** tab again
@@ -68,6 +69,8 @@ Verify the sync of the collections in **Collections** -> **Collections**, switch
 
 #### Push Images to PAH Registry
 
+TODO: This EE example won't work
+
 * As test push a local image to PAH
 
 * First login to the PAH registry: `podman login --tls-verify=false <PAH-HOST>`
@@ -76,25 +79,38 @@ Verify the sync of the collections in **Collections** -> **Collections**, switch
 
 * Check in PAH under **Execution Environments**
 
-### Test **Private Automation Hub** Integration
+### Test Private Automation Hub Integration
 
 Now check that your Automation Controller can actually use the content from your PAH:
 
 * Create a new **Project** pointing here: `https://github.com/ansible-learnfest/playbooks-example.git`
+
   * Have a look at the content, esp the `collections/requirements.yml` file
+
 * Create a new **Template**:
+
   * **Name**: up to you
+
   * **Inventory**: The one you set up with the Playbook before, it should contain one of your AWS instances
+
   * **Project**: The one you just created
+
   * **Execution Environment**: `Ansible Engine 2.9 execution environment`
+
   * **Playbook**: `install-php.yml`
+
   * Check **Privilege Escalation**
+
 * Launch the **Template**, if all was configured correctly it should install PHP modules on the managed node.
 
 So recap what happened:
+
 * You created a **Template** that runs a Playbook that has a requirement on a certain Collection which is not part of the Execution Environments included in Controller.
+
 * Your **Organization** (`default`) is configured in a way it can only download Collections from your Private Automation Hub
+
 * The Collection did exist on your PAH
+
 * **Important**: As this collection is not part of the Execution Environment the Playbook run in, how did it work? In this case is it was dynamically "added" to the Execution Environment at runtime.
 
 **Goal**
