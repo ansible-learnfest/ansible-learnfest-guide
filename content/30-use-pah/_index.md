@@ -7,13 +7,16 @@ weight = 30
 
 ### Prerequisites
 
-* Automation Controller is running & accessible
-* Private Automation Hub is running & accessible
+* Automation Controller is running and accessible
+
+* Private Automation Hub is running and accessible
 
 ### Tasks
 
 * Configure Automation Controller to access your Private Automation Hub
+
 * Add collections from Red Hat Automation Hub, Galaxy and custom ones created by you.
+
 * Add execution environment images
 
 Let's start, as the docs for this are distributed over some places we'll give some more instructions.
@@ -113,6 +116,10 @@ So recap what happened:
 
 * **Important**: As this collection is not part of the Execution Environment the Playbook run in, how did it work? In this case is it was dynamically "added" to the Execution Environment at runtime.
 
-**Goal**
+### Goals
 
-**Tips**
+Be able to manually configure private automation hub to synchronize content from Red Hat's automation hub and Ansible Galaxy.
+
+### Tips
+
+* Check the list of [certified collections](https://access.redhat.com/articles/3642632) in the Red Hat Customer Portal

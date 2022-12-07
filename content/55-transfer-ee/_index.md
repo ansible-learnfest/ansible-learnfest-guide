@@ -21,19 +21,19 @@ weight = 55
 
 * Delete old versions of the EE
 
-### Goal
-
-* Publish an EE in your own registry
-
-* Get familiar with basic EE management tasks
-
-## Push image to PAH
+### Push image to PAH
 
 ```bash
 podman login pah.<LABID>.<SUBDOMAIN>.opentlc.com --username admin --password XXXXX
 podman tag localhost/ee-ansible-demo:0.1.0 pah.<LABID>.<SUBDOMAIN>.opentlc.com/ee-ansible-demo:latest
 podman push localhost/ee-ansible-demo:0.1.0 pah.<LABID>.<SUBDOMAIN>.opentlc.com/ee-ansible-demo
 ```
+
+### Goals
+
+* Publish an EE in your own registry
+
+* Get familiar with basic EE management tasks
 
 ### Tips
 

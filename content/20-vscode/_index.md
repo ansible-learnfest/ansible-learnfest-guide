@@ -3,9 +3,9 @@ title = "The VSCode extension"
 weight = 20
 +++
 
-## Learn about the VSCode extension
+## Introduction to the VSCode extension
 
-We highly recommend making yourself familiar with VSCode and the Ansible extension. Even if you’re not planning to use it as your daily driver, it is good to know how it works to explain and show the benefit to customers.
+We highly recommend making yourself familiar with Visual Studio Code and the Ansible extension. Even if you’re not planning to use it as your daily driver, it is good to know how it works to explain and show the benefit to customers.
 
 TODO: Check this still works in VSCode Server - it's probably already installed
 

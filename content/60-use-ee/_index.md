@@ -13,7 +13,7 @@ weight = 60
 
 ### Tasks
 
-## Configure EE in Controller
+### Configure EE in Controller
 
 * Check the **Credential** Automation Hub Container Registry points to the PAH
 
@@ -37,9 +37,9 @@ weight = 60
 
 * There is an example playbook available in the [playbook-infra](https://github.com/ansible-learnfest/playbooks-infra) project
 
-## Create Project
+### Create Project
 
-- Create a new Project to point to https://github.com/ansible-learnfest/ee-flow.git
+* Create a new Project to point to [https://github.com/ansible-learnfest/ee-flow.git](https://github.com/ansible-learnfest/ee-flow.git)
 
 ### Challenge tasks
 
@@ -52,3 +52,5 @@ weight = 60
 ### Goal
 
 * Get familiar with using EE's in controller and different job templates
+
+### Tips

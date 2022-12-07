@@ -9,9 +9,9 @@ The goal of this LearnFest is to teach you how to use execution environments wit
 
 1. Setup environment
 
-1. Setup private automation hub
-
 1. Get familiar with Visual Studio Code's Ansible extension
+
+1. Setup private automation hub
 
 1. Build the execution environment
 
