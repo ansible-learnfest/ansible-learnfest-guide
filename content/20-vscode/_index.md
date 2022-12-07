@@ -13,7 +13,7 @@ TODO: Check this still works in VSCode Server - it's probably already installed
 
 * You should have a Linux workstation setup
 
-* Install `ansible`, `ansible-lint` and `podman` on your Linux workstation
+* Install `ansible-core`, `ansible-lint` and `podman` on your Linux workstation
 
 * Install `ansible-navigator` for using execution environments
 
@@ -21,11 +21,23 @@ TODO: Check this still works in VSCode Server - it's probably already installed
 
 * Install VSCode [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
+{{% notice note %}}
+If your lab was deployed from RHPDS you already have VS Code Server available and don't have to install it again.
+{{% /notice %}}
+
 * Install the Ansible extension: [https://marketplace.visualstudio.com/items?itemName=redhat.ansible](https://marketplace.visualstudio.com/items?itemName=redhat.ansible)
 
-* Create a playbook/role/collection
+* To install the extension, click on the **Extensions** menu on the left navigation bar, or from the **View** menu.
 
-* Get familiar with the VSCode extension features
+* Search for "Ansible" and make sure to install the collection provided by Red Hat
+
+{{% notice note %}}
+If you use VSCode server, you might see a "reload" button which you need to click to complete the installation.
+{{% /notice %}}
+
+You can now test the extension by performing the following tasks.
+
+* Create a playbook/role/collection
 
 * Set **Language Mode** to Ansible
 
@@ -38,19 +50,21 @@ TODO: Check this still works in VSCode Server - it's probably already installed
     },
 ```
 
+* you can also change the file type by clicking on the respective button in the status bar on the bottom of the VSCode window
+
 * tab completion
 
 * syntax highlighting
 
-* tool tips for modules: hover over a modul FQCN, `Ctrl+Click` on a modul FQCN to open documentation
+* tool tips for modules: hover over a module FQCN, `Ctrl+Click` on a module FQCN to open its documentation
 
 * `Ctrl+Space` for module parameters, e.g. add a task calling `ansible.builtin.yum` and use `Ctrl+Space` to see all module attributes and attribute parameters
 
 * Make syntax error and notice errors in the Problem pane (`Ctrl+Shift+m`): you might have to make sure `ansible-lint` is enabled and notice it is only checking when you save a file
 
-### Goal
+### Goals
 
-Start VSCode and get familiar with its features.
+Start VSCode, install the Ansible extension and get familiar with its features.
 
 ### Tips
 
@@ -58,4 +72,4 @@ Although VSCode of course runs on Linux, Mac and Windows, there are some extra t
 
 ### Challenge Tasks
 
-Try to configure VSCode to use Ansible inside an execution environment.
+Try to configure VSCode to use Ansible inside an execution environment. The EE supported is already installed on the bastion host and can be used for these experiments.
