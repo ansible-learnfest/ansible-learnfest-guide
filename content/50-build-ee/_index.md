@@ -77,7 +77,7 @@ In a production environment we typically recommend to use the `ee-minimal-rhel8`
 
 * [Ansible Builder upstream documentation](https://ansible-builder.readthedocs.io/en/stable/index.html)
 
-* [Ansible-navigator documentation](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.1/html/ansible_navigator_creator_guide/index)
+* [Ansible-navigator documentation](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.3/html-single/ansible_navigator_creator_guide/index)
 
 * [Ansible Builder upstream documentation](https://ansible-navigator.readthedocs.io/en/latest/)
 
