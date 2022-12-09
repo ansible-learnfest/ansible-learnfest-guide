@@ -28,8 +28,8 @@ home = [ "HTML", "RSS", "JSON"]
   deployment = "production"
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-home'></i> Homepage"
-url = "https://devsecops-workshop.github.io/"
+name = "<i class='fas fa-home'></i> Source Code"
+url = "https://github.com/ansible-learnfest/ansible-learnfest-guide"
 weight = 10
 
 [markup]
