@@ -23,7 +23,7 @@ Let's start, as the docs for this are distributed over some places we'll give so
 
 ### Add content to your private Automation Hub
 
-Most of this is well documented [here](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.1/html-single/managing_red_hat_certified_and_ansible_galaxy_collections_in_automation_hub/index)
+Most of this is well documented [here](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.3/html-single/managing_red_hat_ansible_content_collections_and_ansible_galaxy_collections_in_automation_hub/index)
 
 #### Sync collections from Red Hat Automation Hub
 
