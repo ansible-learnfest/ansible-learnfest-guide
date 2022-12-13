@@ -107,7 +107,7 @@ Now check that your Automation Controller can actually use the content from your
   
   * Set the right Credentials : `Workshop Credential`
 
-* Launch the **Template**, if all was configured correctly it should deploy an httpd container with hosting a small website.
+* Launch the **Template**, if all was configured correctly it should deploy an httpd container that is hosting a small website.
 
 So recap what happened:
 
