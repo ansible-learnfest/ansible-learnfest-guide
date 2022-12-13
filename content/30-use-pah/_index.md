@@ -86,9 +86,9 @@ TODO: This EE example won't work
 
 Now check that your Automation Controller can actually use the content from your PAH:
 
-* Create a new **Project** pointing here: `https://github.com/ansible-learnfest/playbooks-example.git`
+* Create a new **Project** pointing here: `https://github.com/ansible-learnfest/ee-flow.git`
 
-  * Have a look at the content, esp the `collections/requirements.yml` file
+* Create an inventory of the target machine or update **Workshop Inventory** by removing `ansible-1` from the list of **Hosts**
 
 * Create a new **Template**:
 
@@ -100,9 +100,13 @@ Now check that your Automation Controller can actually use the content from your
 
   * **Execution Environment**: `Ansible Engine 2.9 execution environment`
 
-  * **Playbook**: `install-php.yml`
+  * **Playbook**: `deploy-container.yml`
 
   * Check **Privilege Escalation**
+  
+  * Set the right inventory : `Workshop Inventory` 
+  
+  * Set the right Credentials : `Workshop Credential`
 
 * Launch the **Template**, if all was configured correctly it should install PHP modules on the managed node.
 
