@@ -86,7 +86,7 @@ TODO: This EE example won't work
 
 Now check that your Automation Controller can actually use the content from your PAH:
 
-* Create a new **Project** pointing here: `https://github.com/ansible-learnfest/playbooks-example.git`
+* Create a new **Project** pointing here: `https://github.com/ansible-learnfest/ee-flow.git`
 
   * Have a look at the content, esp the `collections/requirements.yml` file
 
