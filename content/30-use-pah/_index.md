@@ -100,7 +100,7 @@ Now check that your Automation Controller can actually use the content from your
 
   * **Execution Environment**: `Ansible Engine 2.9 execution environment`
 
-  * **Playbook**: `install-php.yml`
+  * **Playbook**: `deploy-container.yml`
 
   * Check **Privilege Escalation**
 
