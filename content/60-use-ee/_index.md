@@ -17,25 +17,25 @@ weight = 60
 
 * Check the **Credential** Automation Hub Container Registry points to the PAH
 
-* Go to `Execution Environments`
-
-* Configure the new EE
+* Go to `Execution Environments` and configure the new EE
 
   * **Name**: ee-ansible-demo
 
-  * **Image**: pah.<LABID>.<SUBDOMAIN>.opentlc.com/ee-ansible-demo:latest
+  * **Image**: hub-student.LABID.example.opentlc.com/ee-ansible-ssa/latest
 
   * **Credential**: Automation Hub Container Registry
+  
+* Create registry credentials in controller.
 
-* Create registry credentials in controller
+  * Don't forget to untick `Verify SSL` 
 
 * Create the EE in controller
 
-* Create a job template using the EE
+* Create a job template using the newly created EE
 
-* Test a playbook with the collection you added to the EE, e.g. perform an action in Azure
+* Test a playbook with the collection you added to the EE, e.g. deploy a new container
 
-* There is an example playbook available in the [playbook-infra](https://github.com/ansible-learnfest/playbooks-infra) project
+* There is an example playbook available in the [deploy-container.yml](https://github.com/ansible-learnfest/ee-flow) project
 
 ### Create Project
 
