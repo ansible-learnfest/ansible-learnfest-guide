@@ -41,7 +41,12 @@ podman login registry.redhat.io
 
 * In the repo change to the `ansible-builder` directory
 
-* Run `ansible-builder build -f ee-ansible-demo.yml -t ee-ansible-demo:0.1.0 -v 3`
+* Run `ansible-builder` to create the new EE as in the example below:
+
+```bash
+ansible-builder build -f ee-ansible-demo.yml -t ee-ansible-demo:0.1.0 -v 3
+```
+
 
 * Experiment with the other options, e.g. adding an RPM or Python package
 
@@ -53,7 +58,9 @@ podman login registry.redhat.io
 
 * Run a playbook with your EE and verify everything works as expected.
 
-  * Write a playbook using the `containers.podman` to create containers or use the previously used example on [ee-flow](https://github.com/ansible-learnfest/ee-flow.git) project
+  * Write a playbook using the `containers.podman` to create containers or use the previously used example on [ee-flow](https://github.com/ansible-learnfest/ee-flow.git) project without the `requirements.yml` file.
+ 
+  * What do you notice
 
 {{% notice note %}}
 In a production environment we typically recommend to use the `ee-minimal-rhel8` as a base image and only add the collections we specifically need. To make this lab not too complex, we decided to use the EE supported as a base image though.
@@ -61,9 +68,9 @@ In a production environment we typically recommend to use the `ee-minimal-rhel8`
 
 ### Goals
 
-* Build an EE adding two collections
+* Build an EE adding at least one collection
 
-* Use your execution environment to create an instance in Azure
+* Use your execution environment to create a container.
 
 ### Tips
 
