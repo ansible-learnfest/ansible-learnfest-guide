@@ -50,6 +50,18 @@ You can now test the extension by performing the following tasks.
     },
 ```
 
+{{% notice warning %}}
+If you are facing a challenge with extension with a pop-up error message like below:
+
+Command failed: ansible-lint  --offline --nocolor -f codeclimate "/home/student/somefile.yml"
+ERROR    No module named 'ansible'
+FATAL: ansible-lint requires a version of Ansible package >= 2.9, but none was found. Please install a compatible version using the same python interpreter...
+
+Then, try to downgrade your ansible-core package and reload your code-server page:
+`$ sudo dnf install ansible-core-2.12.1`
+{{% /notice %}}
+
+
 * you can also change the file type by clicking on the respective button in the status bar on the bottom of the VSCode window
 
 * tab completion
