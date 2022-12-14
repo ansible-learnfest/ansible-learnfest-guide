@@ -41,23 +41,26 @@ podman login registry.redhat.io
 
 * In the repo change to the `ansible-builder` directory
 
-* Run `ansible-builder build -f ee-ansible-demo.yml -t ee-ansible-demo:0.1.0 -v 3`
+* Run `ansible-builder` to create the new EE as in the example below:
+
+```bash
+ansible-builder build -f ee-ansible-demo.yml -t ee-ansible-demo:0.1.0 -v 3
+```
+
 
 * Experiment with the other options, e.g. adding an RPM or Python package
 
 #### Use the Execution Environment
 
-* Configure `ansible-navigator` to use the previously created EE either by specifying it on the command line or by creating an `ansible-navigator.yml` configuration file (you have one from Track 1).
+* Configure `ansible-navigator` to use the previously created EE either by specifying it on the command line or by creating an `ansible-navigator.yml` configuration file.
 
 * Inspect your EE by using `ansible-navigator`, e.g. to get the list of included collections, ansible versions etc.
 
-* Run a playbook with your EE and verify everything works as expected. Why not deploy Azure objects?
+* Run a playbook with your EE and verify everything works as expected.
 
-  * Use environment variables to provide your Azure credentials. Red Hatters can get Azure credentials from RHPDS’ Azure Blank Open environment.
-
-  * Write a playbook using the `azure.azcollection` to create objects in Azure
-
-  * you can find an example playbook in the [playbook-infra](https://github.com/ansible-learnfest/playbooks-infra) project
+  * Write a playbook using the `containers.podman` to create containers or use the previously used example on [ee-flow](https://github.com/ansible-learnfest/ee-flow.git) project without the `requirements.yml` file.
+ 
+  * What do you notice
 
 {{% notice note %}}
 In a production environment we typically recommend to use the `ee-minimal-rhel8` as a base image and only add the collections we specifically need. To make this lab not too complex, we decided to use the EE supported as a base image though.
@@ -65,11 +68,9 @@ In a production environment we typically recommend to use the `ee-minimal-rhel8`
 
 ### Goals
 
-* Build an EE adding two collections
+* Build an EE adding at least one collection
 
-* Use your execution environment to create an instance in Azure
-
-* Don't forget to remove the instance and all associated resources - you can actually just remove the `resource group` which will remove all objects created within.
+* Use your execution environment to create a container.
 
 ### Tips
 

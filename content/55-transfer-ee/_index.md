@@ -7,7 +7,7 @@ weight = 55
 
 ### Prerequisites
 
-* a working execution environment
+* A working execution environment
 
 * private automation hub to store your EE
 
@@ -24,9 +24,12 @@ weight = 55
 ### Push image to PAH
 
 ```bash
-podman login pah.<LABID>.<SUBDOMAIN>.opentlc.com --username admin --password XXXXX
-podman tag localhost/ee-ansible-demo:0.1.0 pah.<LABID>.<SUBDOMAIN>.opentlc.com/ee-ansible-demo:latest
-podman push localhost/ee-ansible-demo:0.1.0 pah.<LABID>.<SUBDOMAIN>.opentlc.com/ee-ansible-demo
+
+podman login hub-student.<LABID>.example.opentlc.com --tls-verify=false --username admin --password <YOURPASSWORD>
+
+podman tag localhost/ee-ansible-demo:0.1.0  hub-student.<LABID>.example.opentlc.com/ee-ansible-demo:latest
+
+podman push localhost/ee-ansible-demo:0.1.0 hub-student.<LABID>.example.opentlc.com/ee-ansible-demo --tls-verify=false
 ```
 
 ### Goals

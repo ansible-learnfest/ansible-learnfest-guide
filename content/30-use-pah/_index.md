@@ -52,9 +52,6 @@ Galaxy is configured as the remote `community` out of the box. Follow the instru
 ```yaml
 collections:
   # Install a collection from Ansible Galaxy.
-  - name: geerlingguy.php_roles
-    version: 0.9.3
-    source: https://galaxy.ansible.com
   - name: containers.podman
 ```
 
@@ -88,6 +85,8 @@ Now check that your Automation Controller can actually use the content from your
 
 * Create a new **Project** pointing here: `https://github.com/ansible-learnfest/ee-flow.git`
 
+  * Have a look at the content, esp the `collections/requirements.yml` file
+
 * Create an inventory of the target machine or update **Workshop Inventory** by removing `ansible-1` from the list of **Hosts**
 
 * Create a new **Template**:
@@ -108,7 +107,7 @@ Now check that your Automation Controller can actually use the content from your
   
   * Set the right Credentials : `Workshop Credential`
 
-* Launch the **Template**, if all was configured correctly it should install PHP modules on the managed node.
+* Launch the **Template**, if all was configured correctly it should deploy an httpd container that is hosting a small website.
 
 So recap what happened:
 
