@@ -7,8 +7,6 @@ weight = 20
 
 We highly recommend making yourself familiar with Visual Studio Code and the Ansible extension. Even if you’re not planning to use it as your daily driver, it is good to know how it works to explain and show the benefit to customers.
 
-TODO: Check this still works in VSCode Server - it's probably already installed
-
 ### Prerequisites
 
 * You should have a Linux workstation setup
@@ -41,7 +39,7 @@ You can now test the extension by performing the following tasks.
 
 * Set **Language Mode** to Ansible
 
-  Either on the VSCode status bar or put this into `~/.config/Code/User/settings.json`:
+  Either on the VSCode status bar at the bottom of the window or by putting this into `~/..local/share/code-server/User/settings.json`:
 
 ```json
 "files.associations": {
@@ -49,8 +47,6 @@ You can now test the extension by performing the following tasks.
         "*.yaml": "ansible"
     },
 ```
-
-* you can also change the file type by clicking on the respective button in the status bar on the bottom of the VSCode window
 
 * tab completion
 
@@ -68,7 +64,7 @@ Start VSCode, install the Ansible extension and get familiar with its features.
 
 ### Tips
 
-Although VSCode of course runs on Linux, Mac and Windows, there are some extra tasks to be done to get Ansible working on Windows. It's beyond the scope of this manual to provide detailed instructions on how to setup Podman and Ansible on Windows.
+Although VSCode of course runs on Linux, Mac and Windows, there are some extra tasks to be done to get Ansible working on Windows or Mac. It's beyond the scope of this manual to provide detailed instructions on how to setup Podman and Ansible on Windows or Mac.
 
 ### Challenge Tasks
 
