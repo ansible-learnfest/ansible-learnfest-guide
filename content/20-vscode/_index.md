@@ -41,7 +41,7 @@ You can now test the extension by performing the following tasks.
 
 * Set **Language Mode** to Ansible
 
-  Either on the VSCode status bar or put this into `~/.config/Code/User/settings.json`:
+  Either on the VSCode status bar or put this into `~/.local/share/code-server/User/settings.json`:
 
 ```json
 "files.associations": {
