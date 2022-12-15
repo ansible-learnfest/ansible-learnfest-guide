@@ -24,13 +24,12 @@ weight = 55
 ### Push image to PAH
 
 ```bash
-
 podman login hub-student.<LABID>.example.opentlc.com --tls-verify=false --username admin --password <YOURPASSWORD>
-
 podman tag localhost/ee-ansible-demo:0.1.0  hub-student.<LABID>.example.opentlc.com/ee-ansible-demo:latest
-
 podman push localhost/ee-ansible-demo:0.1.0 hub-student.<LABID>.example.opentlc.com/ee-ansible-demo --tls-verify=false
 ```
+
+Log into the Web UI of your automation hub and you will find the execution environment in the **Execution Environments** menu.
 
 ### Goals
 

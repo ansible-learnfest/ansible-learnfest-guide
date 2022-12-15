@@ -19,7 +19,17 @@ This makes the execution of an ansible playbook more scalable, reliable and pred
 
 ### Prerequisites
 
-* Install ansible-builder: on RHEL this is provided by the AAP repo, on Fedora you will need “pip install ansible-builder”, it’s recommended to use a virtual environment in this case.
+* Install `ansible-builder`: on RHEL this is provided by the AAP repo, on Fedora you will need `pip install ansible-builder`, it’s recommended to use a virtual environment in this case.
+
+```bash
+# Only if you're not on RHEL
+dnf -y install python3-virtualenv
+virtualenv ansible-builder
+. ansible-builder/bin/activate
+pip install -U pip ansible-builder
+# If you are on RHEL and the AAP repo is enabled
+sudo yum install ansible-builder
+```
 
 ### Tasks
 
@@ -44,9 +54,9 @@ podman login registry.redhat.io
 * Run `ansible-builder` to create the new EE as in the example below:
 
 ```bash
+cd ee-flow/ansible-builder/
 ansible-builder build -f ee-ansible-demo.yml -t ee-ansible-demo:0.1.0 -v 3
 ```
-
 
 * Experiment with the other options, e.g. adding an RPM or Python package
 
@@ -59,7 +69,7 @@ ansible-builder build -f ee-ansible-demo.yml -t ee-ansible-demo:0.1.0 -v 3
 * Run a playbook with your EE and verify everything works as expected.
 
   * Write a playbook using the `containers.podman` to create containers or use the previously used example on [ee-flow](https://github.com/ansible-learnfest/ee-flow.git) project without the `requirements.yml` file.
- 
+
   * What do you notice
 
 {{% notice note %}}

@@ -1,7 +1,10 @@
 {
     "cSpell.words": [
         "azcollection",
+        "LABID",
         "podman",
-        "Skopeo"
+        "Skopeo",
+        "virtualenv",
+        "YOURPASSWORD"
     ]
 }

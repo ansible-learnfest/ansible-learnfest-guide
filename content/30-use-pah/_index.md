@@ -65,19 +65,7 @@ collections:
 
 * In the **Remote** overview tab click **Sync** for the `community` remote
 
-Verify the sync of the collections in **Collections** -> **Collections**, switch the repositories with the dropdown at the top. There should be a lot of content in the `Red Hat Certified` repo and one collection in the `Community` repo.
-
-#### Push Images to PAH Registry
-
-TODO: This EE example won't work
-
-* As test push a local image to PAH
-
-* First login to the PAH registry: `podman login --tls-verify=false <PAH-HOST>`
-
-* Example: `podman push --tls-verify=false quay.io/redhat_emp1/ee-ansible-ssa <PAH-HOST>/ee-ansible-ssa`
-
-* Check in PAH under **Execution Environments**
+Verify the sync of the collections in **Collections** -> **Collections**, switch the repository filter with the dropdown at the top. There should be a lot of content in the `Red Hat Certified` repo and one collection in the `Community` repo. The 'published' filter will not find anything, since we haven't uploaded any collections we created ourselves.
 
 ### Test Private Automation Hub Integration
 
@@ -93,7 +81,7 @@ Now check that your Automation Controller can actually use the content from your
 
   * **Name**: up to you
 
-  * **Inventory**: The one you set up with the Playbook before, it should contain one of your AWS instances
+  * **Inventory**: The one you set up with the Playbook before, it should contain one of your AWS instances, or if you updated the `Workshop Inventory`, use this one.
 
   * **Project**: The one you just created
 
@@ -102,9 +90,7 @@ Now check that your Automation Controller can actually use the content from your
   * **Playbook**: `deploy-container.yml`
 
   * Check **Privilege Escalation**
-  
-  * Set the right inventory : `Workshop Inventory` 
-  
+
   * Set the right Credentials : `Workshop Credential`
 
 * Launch the **Template**, if all was configured correctly it should deploy an httpd container that is hosting a small website.
@@ -117,11 +103,15 @@ So recap what happened:
 
 * The Collection did exist on your PAH
 
-* **Important**: As this collection is not part of the Execution Environment the Playbook run in, how did it work? In this case is it was dynamically "added" to the Execution Environment at runtime.
+{{% notice note %}}
+As this collection is not part of the Execution Environment the Playbook uses, how did it work? In this case is it was dynamically "added" to the Execution Environment at runtime. This behavior did already exist in Ansible Tower 3.8, and it still does work in automation controller. This means, you only have to build your own execution environment if your collection has additional Python or package dependencies.
+{{% /notice %}}
 
 ### Goals
 
 Be able to manually configure private automation hub to synchronize content from Red Hat's automation hub and Ansible Galaxy.
+
+You should also better understand that, although it might be beneficial to create custom execution environments, it's not always necessary and automation controller can still load and install collections during runtime.
 
 ### Tips
 
