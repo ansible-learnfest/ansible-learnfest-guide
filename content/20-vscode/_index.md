@@ -51,7 +51,7 @@ You can now test the extension by performing the following tasks.
 ```
 
 {{% notice warning %}}
-If you are facing a challenge with extension with a pop-up error message like below:
+If you see this pop-up error message, you might have to downgrade your ansible-core package as instructed below:
 `Command failed: ansible-lint  --offline --nocolor -f codeclimate "/home/student/rhel-workshop/1.3-playbook/apache.yml"`
 `ERROR    No module named 'ansible'`
 `FATAL: ansible-lint requires a version of Ansible package >= 2.9,but none was found. Please install a compatible version using the same python interpreter.`<br> `See https://docs.ansible.com/ansible/latest/installation_guide/intro_ins>
