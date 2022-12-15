@@ -49,21 +49,14 @@ You can now test the extension by performing the following tasks.
 ```
 
 {{% notice warning %}}
-If you see this pop-up error message, you might have to downgrade your ansible-core package as instructed below.
+If you see this pop-up error message, you might have to downgrade your ansible-core package as instructed below:
+`Command failed: ansible-lint --offline --nocolor -f codeclimate "/home/student/rhel-workshop/1.3-playbook/apache.yml"`\
+`ERROR No module named 'ansible' FATAL: ansible-lint requires a version of Ansible package >= 2.9, but none was found.`\
+`Please install a compatible version using the same python interpreter.See` https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-with-pip\
+Then, try to downgrade your ansible-core package and reload your code-server page:\
+`$ sudo dnf install ansible-core-2.12.1`
 {{% /notice %}}
 
-```raw
-Command failed: ansible-lint  --offline --nocolor -f codeclimate "/home/student/rhel-workshop/1.3-playbook/apache.yml"
-ERROR No module named 'ansible'
-FATAL: ansible-lint requires a version of Ansible package >= 2.9,but none was found. Please install a compatible version using the same python interpreter.
-See https://docs.ansible.com/ansible/latest/installation_guide/intro_ins>
-```
-
-Then, try to downgrade your ansible-core package and reload your code-server page:
-
-```bash
-sudo dnf install ansible-core-2.12.1
-```
 
 * tab completion
 
