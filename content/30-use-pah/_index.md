@@ -77,7 +77,7 @@ Now check that your Automation Controller can actually use the content from your
 
 * Create an inventory of the target machine or update **Workshop Inventory** by removing `ansible-1` from the list of **Hosts**
 
-* Create a new **Template**:
+* Create a new **Job Template**:
 
   * **Name**: up to you
 
@@ -89,9 +89,9 @@ Now check that your Automation Controller can actually use the content from your
 
   * **Playbook**: `deploy-container.yml`
 
-  * Check **Privilege Escalation**
+  * Set the right **Credentials** : `Workshop Credential`
 
-  * Set the right Credentials : `Workshop Credential`
+  * Check **Privilege Escalation**
 
 * Launch the **Template**, if all was configured correctly it should deploy an httpd container that is hosting a small website.
 
@@ -104,7 +104,7 @@ So recap what happened:
 * The Collection did exist on your PAH
 
 {{% notice note %}}
-As this collection is not part of the Execution Environment the Playbook uses, how did it work? In this case is it was dynamically "added" to the Execution Environment at runtime. This behavior did already exist in Ansible Tower 3.8, and it still does work in automation controller. This means, you only have to build your own execution environment if your collection has additional Python or package dependencies.
+As this collection is not part of the Execution Environment the Playbook uses, how did it work? In this case is it was dynamically "added" to the Execution Environment at runtime. This behavior did already exist in Ansible Tower 3.8, and it still does work in automation controller. This means, you only have to build your own execution environment if your collection has additional Python or package dependencies. You can double check by looking at the details of the "source control update" job of your project and click on the "fetch galaxy collections from collections/requirements" task.
 {{% /notice %}}
 
 ### Goals
