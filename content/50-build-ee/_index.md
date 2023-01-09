@@ -58,19 +58,28 @@ cd ee-flow/ansible-builder/
 ansible-builder build -f ee-ansible-demo.yml -t ee-ansible-demo:0.1.0 -v 3
 ```
 
+{{% notice note %}}
+We're using the `-v 3` flags to get more detailed output from `ansible-builder` - by default the tool is very quiet.
+{{% /notice %}}
+
 * Experiment with the other options, e.g. adding an RPM or Python package
 
 #### Use the Execution Environment
 
-* Configure `ansible-navigator` to use the previously created EE either by specifying it on the command line or by creating an `ansible-navigator.yml` configuration file.
+* Configure `ansible-navigator` to use the previously created EE either by specifying it on the command line or by creating an `ansible-navigator.yml` configuration file. You can set a specific EE on the command line with the '--eei &lt;image&gt;' flag.
+
+Or if you prefer to make the necessary changes in the `~/.ansible-navigator.yaml` add the following section:
+
+```yaml
+---
+ansible-navigator:
+  execution-environment:
+    image: ah.bolzchristian.de/ee-cjung-standard:latest
+```
 
 * Inspect your EE by using `ansible-navigator`, e.g. to get the list of included collections, ansible versions etc.
 
-* Run a playbook with your EE and verify everything works as expected.
-
-  * Write a playbook using the `containers.podman` to create containers or use the previously used example on [ee-flow](https://github.com/ansible-learnfest/ee-flow.git) project without the `requirements.yml` file.
-
-  * What do you notice
+* Write and run a playbook using the `containers.podman` to create containers or use the previously used example part of the [ee-flow](https://github.com/ansible-learnfest/ee-flow.git) project.
 
 {{% notice note %}}
 In a production environment we typically recommend to use the `ee-minimal-rhel8` as a base image and only add the collections we specifically need. To make this lab not too complex, we decided to use the EE supported as a base image though.

@@ -57,7 +57,6 @@ Then, try to downgrade your ansible-core package and reload your code-server pag
 `$ sudo dnf install ansible-core-2.12.1`
 {{% /notice %}}
 
-
 * tab completion
 
 * syntax highlighting
