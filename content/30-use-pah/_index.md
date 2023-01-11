@@ -16,9 +16,7 @@ weight = 30
 ### Tasks
 
 * Add collections from Red Hat Automation Hub and Galaxy to PAH
-
 * Configure Automation Controller to access your Private Automation Hub
-
 * Use a collection from PAH in Automation Controller
 
 Let's start, as the docs for this are distributed over some places we'll give some more instructions.
@@ -30,21 +28,13 @@ Most of this is well documented [here](https://access.redhat.com/documentation/e
 #### Sync collections from Red Hat Automation Hub to PAH
 
 * Go to `console.redhat.com` and open **Ansible Automation Platform** -> **Automation Hub** -> **Collections**. Here you can enable/disable the sync of certain collections.
-
 * What you need to do is to get the authentication token and configure it in your PAH:
-
   * In Red Hat Automation Hub go to **Connect to Hub** we will need the **Offline Token** and the **Server URL**
-
   * In your private automation hub go to **Collections** -> **Repository management** -> **Remote**
-
   * Edit the `rh-certified` remote:
-
     * **URL** paste the **Server URL** from the Red Hat Automation Hub
-
     * **Token** the token you copied from RH AH
-
     * Click **Save** and then hit **Sync**. This will sync all enabled and updated collections from Red Hat Automation Hub to your Private Automation Hub.
-
 * After the sync process has finished, check the certified collections are visible on PAH.
 
 #### Integrate your PAH in Automation Controller
@@ -80,29 +70,19 @@ You could add more credentials here, the order of these credentials sets precede
 Now check that Automation Controller can actually use the content from your PAH by creating a **Job Template** that requires a collection that is not part of the included Execution Environments:
 
 * Create a new **Project** pointing here: `https://github.com/ansible-learnfest/ee-flow.git`
-
   * Have a look at the content on GitHub, esp the `collections/requirements.yml` file
 
 * Update the existing **Workshop Inventory**:
-
   * remove `ansible-1` from the list of **Hosts**
-
   * Disable `node2` and `node3`
 
 * Create a new **Job Template**:
-
   * **Name**: up to you
-
   * **Inventory**: The `Workshop Inventory`
-
   * **Project**: The one you just created
-
   * **Execution Environment**: `Ansible Engine 2.9 execution environment`
-
   * **Playbook**: `deploy-container.yml`
-
   * Set the right **Credentials** : `Workshop Credential`
-
   * Check **Privilege Escalation**
 
 * Launch the **Template**
@@ -124,21 +104,16 @@ collections:
 ```
 
 * Go to Repo Management, click the **Remote** tab again
-
 * Edit the `community` remote
-
 * In **YAML requirements** upload the  `requirements.yml` file from your local machine.
-
 * Click **Save**
-
 * In the **Remote** overview tab click **Sync** for the `community` remote
 
 Verify the sync of the collections in **Collections** -> **Collections**, switch the repository filter with the dropdown at the top. There should be a lot of content in the `Red Hat Certified` repo and one collection in the `Community` repo. The 'published' filter will not find anything, since we haven't uploaded any collections we created ourselves.
 
 **Run your Job Template again.**
 
-*  It should now run and deploy an httpd container that is hosting a small website.
-
+* It should now run and deploy an httpd container that is hosting a small website.
 * Test it from the terminal in VS Code Server:
 
 ```
@@ -148,9 +123,7 @@ $ curl node1
 So recap what happened:
 
 * You created a **Template** that runs a Playbook that has a requirement on a certain Collection which is **not part of the Execution Environments included in Controller**.
-
 * Your **Organization** (`default`) is configured in a way it can only download Collections from your Private Automation Hub
-
 * The Collection did exist on your PAH
 
 {{% notice note %}}
