@@ -15,12 +15,18 @@ Because your lab was deployed from RHPDS you already have VS Code Server (basica
 
 Make sure you can access your VS Code Server instance using the credentials provided.
 
+We found a bug last minute in the blueprint we use for this lab. Please run this command to make sure yamllint is not installed from EPEL:
+
+```bash
+yum distro-sync --disablerepo=epel
+```
+
 ### Tasks
 
 * Make sure the extension is installed (Hint: **Extensions** menu on the left navigation bar, or from the **View** menu.)
 
 {{% notice note %}}
-You might see a "reload" button next to the extension which you need to click to complete the installation.
+Double check you have the latest version of the Ansible extension by Red Hat and remove older or other versions. You might see a "reload" button next to the extension which you need to click to complete the installation.
 {{% /notice %}}
 
 You can now test the extension by performing the following tasks.

@@ -24,30 +24,12 @@ Let's start, as the docs for this are distributed over some places we'll give so
 
 #### Integrate your PAH in Automation Controller
 
-Automation Controller doesn't know about your Private Automation Hub, yet. The first step is to create a new Credential pointing to your PAH:
-
-Get access URL and Token from your PAH and write them down somewhere:
-
-* In PAH, **Collections**->**Repository management**
-* Get the URLs for the **local** repos **community**, **published** and **rh-certified**
-* Get the access token from **Collections** -> **API Token**, click on **Load Token**
-
-Then configure three new credentials in Automation Controller for the three URLs:
-
-* **Name**: PAH {Community,Published,RH-Certified}
-* **Organization**: default
-* **Credential Type**: Ansible Galaxy/Automation Hub API Token
-* **Galaxy Server URL**: &lt;the respective community repo URL&gt;
-* **API Token**: &lt;the token&gt;
-
-Now the access information is configured but not used by Automation Controller. This is done on the **Organization** level.
+In this lab your automation controller is already configured to fetch collections from the private automation hub. We want to additionally also disable direct retrieval of collections from Ansible Galaxy.
 
 * Open the `default` **Organization** in Automation Controller and click **Edit**
 * Have a look at the **Galaxy Credentials** field. There is only one credential pointing to Ansible Galaxy. This is the default.
-* Remove the "Ansible Galaxy" credential and add the one pointing to your PAH and add the three credentials you just created
+* Make sure the credentials for your private automation hub are enabled, and **disable** the "Ansible Galaxy" credential.
 * Click **Save**
-
-Finally, you have to disable SSL Certificate verification, since we're using self signed certificates in this lab. Navigate to **Settings** -> **Job Settings**, Edit and turn on **Ignore Ansible Galaxy SSL Certificate Verification**.
 
 {{% notice note %}}
 You could add more credentials here, the order of these credentials sets precedence for the sync and lookup of the content.
@@ -104,13 +86,29 @@ Verify the sync of the collections in **Collections** -> **Collections**, switch
 
 ### Test Private Automation Hub Integration
 
-Now check that Automation Controller can actually use the content from your PAH. Let's first sync our project again and the error message should disappear. For a proper end to end test, let's create a **Job Template** that requires a collection that is not part of the included Execution Environments:
+Now check that Automation Controller can actually use the content from your PAH. Let's first sync our project again and the error message should disappear.
+
+Before we can test our Playbook, we have to create an inventory. Create an inventory called **Workshop Inventory** and populate it with the servers listed in `/etc/ansible/hosts` in the "managed_nodes" section:
+
+```bash
+$ cat /etc/ansible/hosts
+[output truncated]
+
+[managed_nodes]
+node1.<LABID>.internal
+node2.<LABID>.internal
+node3.<LABID>.internal
+```
+
+We also have to create machine credentials for these servers. Let's create machine credentials called **Workshop Credentials**. You can use your private key and username "ec2-user":
+
+```bash
+cat .ssh/<LABID>key.pem
+```
+
+For a proper end to end test, let's create a **Job Template** that requires a collection that is not part of the included Execution Environments:
 
 * Sync the project you created earlier again and check it runs successfully. You should notice that the task which install collection from the `requirements.yml` is succeeding.
-
-* Update the existing **Workshop Inventory**:
-  * remove `ansible-1` from the list of **Hosts**
-  * Disable `node2` and `node3`
 
 * Create a new **Job Template**:
   * **Name**: up to you
