@@ -22,6 +22,17 @@ weight = 30
 
 Let's start, as the docs for this are distributed over some places we'll give some more instructions.
 
+### Setup demo project
+
+Before we configure content synchronization, we want to add a demo project:
+
+* Create a new **Project** pointing here: `https://github.com/ansible-learnfest/ee-flow.git`
+  * Have a look at the content on GitHub, esp the `collections/requirements.yml` file
+
+You will notice this project will fail to sync (Click on the **Jobs** menu on the left). This is because the `requirements.yml` file lists a dependency for a collection which is not yet available on your controller.
+
+To solve this issue, we have to configure your private automation hub to sync the necessary sources, and to configure your automation controller to use the content from your private automation hub.
+
 ### Add and use content in your Private Automation Hub
 
 Most of this is well documented [here](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.3/html-single/managing_red_hat_ansible_content_collections_and_ansible_galaxy_collections_in_automation_hub/index)
@@ -38,6 +49,26 @@ Most of this is well documented [here](https://access.redhat.com/documentation/e
     * **Token** the token you copied from RH AH
     * Click **Save** and then hit **Sync**. This will sync all enabled and updated collections from Red Hat Automation Hub to your Private Automation Hub.
 * After the sync process has finished, check the certified collections are visible on PAH.
+
+#### Sync selected community collections from Ansible Galaxy to PAH
+
+Galaxy is configured as the remote `community` out of the box. Follow the instructions to configure the synchronization.
+
+* Create a regular requirements.yml file pointing to the `containers.podman` collection:
+
+```yaml
+collections:
+  # Install a collection from Ansible Galaxy.
+  - name: containers.podman
+```
+
+* Go to Repo Management, click the **Remote** tab again
+* Edit the `community` remote
+* In **YAML requirements** upload the  `requirements.yml` file from your local machine.
+* Click **Save**
+* In the **Remote** overview tab click **Sync** for the `community` remote
+
+Verify the sync of the collections in **Collections** -> **Collections**, switch the repository filter with the dropdown at the top. There should be a lot of content in the `Red Hat Certified` repo and one collection in the `Community` repo. The 'published' filter will not find anything, since we haven't uploaded any collections we created ourselves.
 
 #### Integrate your PAH in Automation Controller
 
@@ -74,8 +105,7 @@ You could add more credentials here, the order of these credentials sets precede
 
 Now check that Automation Controller can actually use the content from your PAH by creating a **Job Template** that requires a collection that is not part of the included Execution Environments:
 
-* Create a new **Project** pointing here: `https://github.com/ansible-learnfest/ee-flow.git`
-  * Have a look at the content on GitHub, esp the `collections/requirements.yml` file
+* Sync the project you created earlier again and check it runs successfully. You should notice that the task which install collection from the `requirements.yml` is succeeding.
 
 * Update the existing **Workshop Inventory**:
   * remove `ansible-1` from the list of **Hosts**
@@ -92,34 +122,7 @@ Now check that Automation Controller can actually use the content from your PAH 
 
 * Launch the **Template**
 
-If you followed the steps above you should **get an error**. Why? Because You pointed Automation Controller to your PAH but the collection required in the requirements.yml is not there. Check the output of the `Source Control Update` job under **Views**->**Jobs**.
-
-So let's get the collection on PAH.
-
-#### Sync selected community collections from Ansible Galaxy to PAH
-
-Galaxy is configured as the remote `community` out of the box. Follow the instructions to configure the synchronization.
-
-* Create a regular requirements.yml file pointing to the `containers.podman` collection:
-
-```yaml
-collections:
-  # Install a collection from Ansible Galaxy.
-  - name: containers.podman
-```
-
-* Go to Repo Management, click the **Remote** tab again
-* Edit the `community` remote
-* In **YAML requirements** upload the  `requirements.yml` file from your local machine.
-* Click **Save**
-* In the **Remote** overview tab click **Sync** for the `community` remote
-
-Verify the sync of the collections in **Collections** -> **Collections**, switch the repository filter with the dropdown at the top. There should be a lot of content in the `Red Hat Certified` repo and one collection in the `Community` repo. The 'published' filter will not find anything, since we haven't uploaded any collections we created ourselves.
-
-**Run your Job Template again.**
-
-* It should now run and deploy an httpd container that is hosting a small website.
-* Test it from the terminal in VS Code Server:
+It should now run and deploy an httpd container that is hosting a small website. Test it from the terminal in VS Code Server:
 
 ```bash
 curl node1
