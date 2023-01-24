@@ -7,12 +7,13 @@ weight = 30
 
 ### Prerequisites
 
-* Make sure you can login to your:
+* Make sure you can log into to your:
 
   * Automation Controller
   * Private Automation Hub (PAH)
 
-* Using the access information/credentials provided
+* Using the access information/credentials provided.
+
 ### Tasks
 
 * Add collections from Red Hat Automation Hub and Galaxy to PAH
@@ -27,7 +28,8 @@ Most of this is well documented [here](https://access.redhat.com/documentation/e
 
 #### Sync collections from Red Hat Automation Hub to PAH
 
-* Go to `console.redhat.com` and open **Ansible Automation Platform** -> **Automation Hub** -> **Collections**. Here you can enable/disable the sync of certain collections.
+* Go to `console.redhat.com` and open **Ansible Automation Platform** -> **Automation Hub** -> **Collections**. Here you can enable/disable the sync of certain collections. You will need a RHN account with "organization administrator" privileges to perform this action.
+
 * What you need to do is to get the authentication token and configure it in your PAH:
   * In Red Hat Automation Hub go to **Connect to Hub** we will need the **Offline Token** and the **Server URL**
   * In your private automation hub go to **Collections** -> **Repository management** -> **Remote**
@@ -55,11 +57,14 @@ Then configure three new credentials in Automation Controller for the three URLs
 * **Galaxy Server URL**: <the respective community repo URL>
 * **API Token**: <the token>
 
-Now the access information is configured but not used by Automation Controller. This is done on **Organization** level.
+Now the access information is configured but not used by Automation Controller. This is done on the **Organization** level.
 
 * Open the `default` **Organization** in Automation Controller and click **Edit**
 * Have a look at the **Galaxy Credentials** field. There is only one credential pointing to Ansible Galaxy. This is the default.
-* Remove the credential and add the one pointing to your PAH.
+* Remove the credential and add the one pointing to your PAH and add the three credentials you just created
+* Click **Save**
+
+Finally, you have to disable SSL Certificate verification, since we're using self signed certificates in this lab. Navigate to **Settings** -> **Job Settings**, Edit and turn on **Ignore Ansible Galaxy SSL Certificate Verification**.
 
 {{% notice note %}}
 You could add more credentials here, the order of these credentials sets precedence for the sync and lookup of the content.
