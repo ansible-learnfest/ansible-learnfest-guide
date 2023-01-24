@@ -9,37 +9,32 @@ We highly recommend making yourself familiar with Visual Studio Code and the Ans
 
 ### Prerequisites
 
-* You should have a Linux workstation setup
+{{% notice note %}}
+Because your lab was deployed from RHPDS you already have VS Code Server (basically VSCode in a browser) available in your lab environment. You don't have to install anything locally.
+{{% /notice %}}
 
-* Install `ansible-core`, `ansible-lint` and `podman` on your Linux workstation
+* Make sure you can access your VS Code Server instance using the credentials provided.
+* To fix an issue with the lab environment, open a terminal in VS Code Server (or open an SSH session) and run:
 
-* Install `ansible-navigator` for using execution environments
+```
+$ sudo dnf install ansible-lint
+$ sudo dnf install ansible-core-2.12.1
+```
+
+* Reload the VS Code Server page
 
 ### Tasks
 
-* Install VSCode [https://code.visualstudio.com/](https://code.visualstudio.com/)
+* Make sure the extension is installed (Hint: **Extensions** menu on the left navigation bar, or from the **View** menu.)
 
 {{% notice note %}}
-If your lab was deployed from RHPDS you already have VS Code Server available and don't have to install it again.
-{{% /notice %}}
-
-* Install the Ansible extension: [https://marketplace.visualstudio.com/items?itemName=redhat.ansible](https://marketplace.visualstudio.com/items?itemName=redhat.ansible)
-
-* To install the extension, click on the **Extensions** menu on the left navigation bar, or from the **View** menu.
-
-* Search for "Ansible" and make sure to install the collection provided by Red Hat
-
-{{% notice note %}}
-If you use VSCode server, you might see a "reload" button which you need to click to complete the installation.
+You might see a "reload" button next to the extension which you need to click to complete the installation.
 {{% /notice %}}
 
 You can now test the extension by performing the following tasks.
 
-* Create a playbook/role/collection
-
-* Set **Language Mode** to Ansible
-
-  Either on the VSCode status bar at the bottom of the window or by putting this into `~/.local/share/code-server/User/settings.json`:
+* Create a new file and paste [this](https://github.com/ansible-learnfest/playbooks-example/blob/main/apache_install.yml) playbook. Save it with a `.yml` extension.
+* Set **Language Mode** to Ansible either on the VSCode status bar at the bottom of the window or by putting this into `~/.local/share/code-server/User/settings.json`:
 
 ```json
 "files.associations": {
@@ -47,29 +42,18 @@ You can now test the extension by performing the following tasks.
         "*.yaml": "ansible"
     },
 ```
-
-{{% notice warning %}}
-If you see this pop-up error message, you might have to downgrade your ansible-core package as instructed below:
-`Command failed: ansible-lint --offline --nocolor -f codeclimate "/home/student/rhel-workshop/1.3-playbook/apache.yml"`\
-`ERROR No module named 'ansible' FATAL: ansible-lint requires a version of Ansible package >= 2.9, but none was found.`\
-`Please install a compatible version using the same python interpreter.See` https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-with-pip\
-Then, try to downgrade your ansible-core package and reload your code-server page:\
-`$ sudo dnf install ansible-core-2.12.1`
-{{% /notice %}}
+You'll see ansible-lint complaining about some parts of the Playbook. Your job is to fix these issues using the VS Code Ansible extension features. Examples are:
 
 * tab completion
-
 * syntax highlighting
-
+* hover over a red issue line to see the complaint
 * tool tips for modules: hover over a module FQCN, `Ctrl+Click` on a module FQCN to open its documentation
-
 * `Ctrl+Space` for module parameters, e.g. add a task calling `ansible.builtin.yum` and use `Ctrl+Space` to see all module attributes and attribute parameters
-
 * Make syntax error and notice errors in the Problem pane (`Ctrl+Shift+m`): you might have to make sure `ansible-lint` is enabled and notice it is only checking when you save a file
 
 ### Goals
 
-Start VSCode, install the Ansible extension and get familiar with its features.
+Get familiar with the Ansible VS Code extension features.
 
 ### Tips
 
