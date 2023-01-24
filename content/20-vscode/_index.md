@@ -13,15 +13,7 @@ We highly recommend making yourself familiar with Visual Studio Code and the Ans
 Because your lab was deployed from RHPDS you already have VS Code Server (basically VSCode in a browser) available in your lab environment. You don't have to install anything locally.
 {{% /notice %}}
 
-* Make sure you can access your VS Code Server instance using the credentials provided.
-* To fix an issue with the lab environment, open a terminal in VS Code Server (or open an SSH session) and run:
-
-```
-$ sudo dnf install ansible-lint
-$ sudo dnf install ansible-core-2.12.1
-```
-
-* Reload the VS Code Server page
+Make sure you can access your VS Code Server instance using the credentials provided.
 
 ### Tasks
 
@@ -42,7 +34,8 @@ You can now test the extension by performing the following tasks.
         "*.yaml": "ansible"
     },
 ```
-You'll see ansible-lint complaining about some parts of the Playbook. Your job is to fix these issues using the VS Code Ansible extension features. Examples are:
+
+You'll see ansible-lint complaining about some parts of the Playbook in the Problems pane. You can open the Problems pane by clicking on View -> Problems. Your job is to fix these issues using the VS Code Ansible extension features.
 
 * tab completion
 * syntax highlighting

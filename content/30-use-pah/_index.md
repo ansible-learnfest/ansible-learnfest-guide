@@ -7,19 +7,63 @@ weight = 30
 
 ### Prerequisites
 
-* Make sure you can login to your:
+* Make sure you can log into to your:
 
   * Automation Controller
   * Private Automation Hub (PAH)
 
-* Using the access information/credentials provided
+* Using the access information/credentials provided.
+
 ### Tasks
 
-* Add collections from Red Hat Automation Hub and Galaxy to PAH
 * Configure Automation Controller to access your Private Automation Hub
+* Add collections from Red Hat Automation Hub and Galaxy to PAH
 * Use a collection from PAH in Automation Controller
 
 Let's start, as the docs for this are distributed over some places we'll give some more instructions.
+
+#### Integrate your PAH in Automation Controller
+
+Automation Controller doesn't know about your Private Automation Hub, yet. The first step is to create a new Credential pointing to your PAH:
+
+Get access URL and Token from your PAH and write them down somewhere:
+
+* In PAH, **Collections**->**Repository management**
+* Get the URLs for the **local** repos **community**, **published** and **rh-certified**
+* Get the access token from **Collections** -> **API Token**, click on **Load Token**
+
+Then configure three new credentials in Automation Controller for the three URLs:
+
+* **Name**: PAH {Community,Published,RH-Certified}
+* **Organization**: default
+* **Credential Type**: Ansible Galaxy/Automation Hub API Token
+* **Galaxy Server URL**: &lt;the respective community repo URL&gt;
+* **API Token**: &lt;the token&gt;
+
+Now the access information is configured but not used by Automation Controller. This is done on the **Organization** level.
+
+* Open the `default` **Organization** in Automation Controller and click **Edit**
+* Have a look at the **Galaxy Credentials** field. There is only one credential pointing to Ansible Galaxy. This is the default.
+* Remove the "Ansible Galaxy" credential and add the one pointing to your PAH and add the three credentials you just created
+* Click **Save**
+
+Finally, you have to disable SSL Certificate verification, since we're using self signed certificates in this lab. Navigate to **Settings** -> **Job Settings**, Edit and turn on **Ignore Ansible Galaxy SSL Certificate Verification**.
+
+{{% notice note %}}
+You could add more credentials here, the order of these credentials sets precedence for the sync and lookup of the content.
+{{% /notice %}}
+
+### Setup demo project
+
+Before we configure content synchronization, we want to add a demo project:
+
+* Create a new **Project** pointing here: `https://github.com/ansible-learnfest/ee-flow.git`
+
+* Have a look at the content on GitHub, esp the `collections/requirements.yml` file
+
+You will notice this project will fail to sync (Click on the **Jobs** menu on the left) with an error "ERROR! Failed to resolve the requested dependencies map. Could not satisfy the following requirements: containers.podman". This is because the `requirements.yml` file lists a dependency for a collection which is not yet available on your controller.
+
+To solve this issue, we have to configure your private automation hub to sync the necessary sources, and to configure your automation controller to use the content from your private automation hub. We did already configure automation controller, but we haven't synced any content yet.
 
 ### Add and use content in your Private Automation Hub
 
@@ -27,69 +71,16 @@ Most of this is well documented [here](https://access.redhat.com/documentation/e
 
 #### Sync collections from Red Hat Automation Hub to PAH
 
-* Go to `console.redhat.com` and open **Ansible Automation Platform** -> **Automation Hub** -> **Collections**. Here you can enable/disable the sync of certain collections.
+* Go to `console.redhat.com` and open **Ansible Automation Platform** -> **Automation Hub** -> **Collections**. Here you can enable/disable the sync of certain collections. You will need a RHN account with "organization administrator" privileges to perform this action.
+
 * What you need to do is to get the authentication token and configure it in your PAH:
   * In Red Hat Automation Hub go to **Connect to Hub** we will need the **Offline Token** and the **Server URL**
   * In your private automation hub go to **Collections** -> **Repository management** -> **Remote**
   * Edit the `rh-certified` remote:
-    * **URL** paste the **Server URL** from the Red Hat Automation Hub
+    * **URL** paste and override the **Server URL** from the Red Hat Automation Hub
     * **Token** the token you copied from RH AH
     * Click **Save** and then hit **Sync**. This will sync all enabled and updated collections from Red Hat Automation Hub to your Private Automation Hub.
 * After the sync process has finished, check the certified collections are visible on PAH.
-
-#### Integrate your PAH in Automation Controller
-
-Automation Controller doesn't know about your Private Automation Hub, yet. The first step is to create a new Credential pointing to your PAH:
-
-Get access URL and Token fromm your PAH and put them down somewhere:
-
-* In PAH, **Collections**->**Repository management**
-* Get the URLs for the **local** repos **community**, **published** and **rh-certified**
-* Get the access token from **Collections**->**API Token**
-
-Then configure three new credentials in Automation Controller for the three URLs:
-
-* **Name**: PAH {Community,Published,RH-Certified}
-* **Organization**: default
-* **Credential Type**: Ansible Galaxy/Automation Hub API Token
-* **Galaxy Server URL**: <the respective community repo URL>
-* **API Token**: <the token>
-
-Now the access information is configured but not used by Automation Controller. This is done on **Organization** level.
-
-* Open the `default` **Organization** in Automation Controller and click **Edit**
-* Have a look at the **Galaxy Credentials** field. There is only one credential pointing to Ansible Galaxy. This is the default.
-* Remove the credential and add the one pointing to your PAH.
-
-{{% notice note %}}
-You could add more credentials here, the order of these credentials sets precedence for the sync and lookup of the content.
-{{% /notice %}}
-
-### Test Private Automation Hub Integration
-
-Now check that Automation Controller can actually use the content from your PAH by creating a **Job Template** that requires a collection that is not part of the included Execution Environments:
-
-* Create a new **Project** pointing here: `https://github.com/ansible-learnfest/ee-flow.git`
-  * Have a look at the content on GitHub, esp the `collections/requirements.yml` file
-
-* Update the existing **Workshop Inventory**:
-  * remove `ansible-1` from the list of **Hosts**
-  * Disable `node2` and `node3`
-
-* Create a new **Job Template**:
-  * **Name**: up to you
-  * **Inventory**: The `Workshop Inventory`
-  * **Project**: The one you just created
-  * **Execution Environment**: `Ansible Engine 2.9 execution environment`
-  * **Playbook**: `deploy-container.yml`
-  * Set the right **Credentials** : `Workshop Credential`
-  * Check **Privilege Escalation**
-
-* Launch the **Template**
-
-If you followed the steps above you should **get an error**. Why? Because You pointed Automation Controller to your PAH but the collection required in the requirements.yml is not there. Check the output of the `Source Control Update` job under **Views**->**Jobs**.
-
-So let's get the collection on PAH.
 
 #### Sync selected community collections from Ansible Galaxy to PAH
 
@@ -111,13 +102,31 @@ collections:
 
 Verify the sync of the collections in **Collections** -> **Collections**, switch the repository filter with the dropdown at the top. There should be a lot of content in the `Red Hat Certified` repo and one collection in the `Community` repo. The 'published' filter will not find anything, since we haven't uploaded any collections we created ourselves.
 
-**Run your Job Template again.**
+### Test Private Automation Hub Integration
 
-* It should now run and deploy an httpd container that is hosting a small website.
-* Test it from the terminal in VS Code Server:
+Now check that Automation Controller can actually use the content from your PAH. Let's first sync our project again and the error message should disappear. For a proper end to end test, let's create a **Job Template** that requires a collection that is not part of the included Execution Environments:
 
-```
-$ curl node1
+* Sync the project you created earlier again and check it runs successfully. You should notice that the task which install collection from the `requirements.yml` is succeeding.
+
+* Update the existing **Workshop Inventory**:
+  * remove `ansible-1` from the list of **Hosts**
+  * Disable `node2` and `node3`
+
+* Create a new **Job Template**:
+  * **Name**: up to you
+  * **Inventory**: The `Workshop Inventory`
+  * **Project**: The one you just created
+  * **Execution Environment**: `Ansible Engine 2.9 execution environment`
+  * **Playbook**: `deploy-container.yml`
+  * Set the right **Credentials** : `Workshop Credential`
+  * Check **Privilege Escalation**
+
+* Launch the **Template**
+
+It should now run and deploy an httpd container that is hosting a small website. Test it from the terminal in VS Code Server:
+
+```bash
+curl node1
 ```
 
 So recap what happened:
@@ -130,7 +139,6 @@ So recap what happened:
 As this collection is not part of the Execution Environment the Playbook uses, how did it work?
 In this case is it was dynamically "added" to the Execution Environment at runtime. This behavior did already exist in Ansible Tower 3.8, and it still does work in automation controller. This means, you only have to build your own execution environment if your collection has additional Python or package dependencies. You can double check by looking at the details of the "source control update" job of your project and click on the "fetch galaxy collections from collections/requirements" task.
 {{% /notice %}}
-
 
 ### Goals
 
