@@ -54,8 +54,8 @@ Then configure three new credentials in Automation Controller for the three URLs
 * **Name**: PAH {Community,Published,RH-Certified}
 * **Organization**: default
 * **Credential Type**: Ansible Galaxy/Automation Hub API Token
-* **Galaxy Server URL**: <the respective community repo URL>
-* **API Token**: <the token>
+* **Galaxy Server URL**: &lt;the respective community repo URL&gt;
+* **API Token**: &lt;the token&gt;
 
 Now the access information is configured but not used by Automation Controller. This is done on the **Organization** level.
 
@@ -121,8 +121,8 @@ Verify the sync of the collections in **Collections** -> **Collections**, switch
 * It should now run and deploy an httpd container that is hosting a small website.
 * Test it from the terminal in VS Code Server:
 
-```
-$ curl node1
+```bash
+curl node1
 ```
 
 So recap what happened:
@@ -135,7 +135,6 @@ So recap what happened:
 As this collection is not part of the Execution Environment the Playbook uses, how did it work?
 In this case is it was dynamically "added" to the Execution Environment at runtime. This behavior did already exist in Ansible Tower 3.8, and it still does work in automation controller. This means, you only have to build your own execution environment if your collection has additional Python or package dependencies. You can double check by looking at the details of the "source control update" job of your project and click on the "fetch galaxy collections from collections/requirements" task.
 {{% /notice %}}
-
 
 ### Goals
 
