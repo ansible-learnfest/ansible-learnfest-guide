@@ -6,6 +6,7 @@ weight = 60
 ## Use the EE in controller
 
 You have tested running a Playbook that depends on the Podman collection with `ansible-navigator`. Now it's time to use the custom EE with the Podman collection in Automation Controller.
+
 ### Prerequisites
 
 * The custom EE was pushed and is published in PAH
@@ -14,6 +15,7 @@ You have tested running a Playbook that depends on the Podman collection with `a
 
 * Check Automation Controller is configured to use EE's in PAH
 * Use the custom EE in Controller
+
 ### Configure EE in Controller
 
 * Check the **Credential** `Automation Hub Container Registry` points to PAH
@@ -23,7 +25,6 @@ You have tested running a Playbook that depends on the Podman collection with `a
   * **Authentication URL**:
   * **Username**: admin
   * **Password**: &lt;your secret password>
-  * **Verify SSL**: disabled
 
 {{% notice note %}}
 You can find the Authentication URL on your private automation hub by navigating to **Execution Environments**, select the EE you want to use and then in **Details**.
@@ -31,24 +32,24 @@ You can find the Authentication URL on your private automation hub by navigating
 
 * Go to `Execution Environments` and add the new EE
   * **Name**: ee-ansible-demo
-  * **Image**: \<PAH URL>/\<image name>:\<tag>
+  * **Image**: \<PAH Hostname>/\<image name>:\<tag>
   * **Pull**: Always
   * **Registry Credential**: Automation Hub Container Registry
   * **Organization**: Default
 
 {{% notice note %}}
-Get the image location from your PAH: In **Execution Environemnts** click the image.
+Get the image location from your PAH: In **Execution Environments** click the image.
 {{% /notice %}}
 
 ### Bring it all together
 
-This time we'll run the Playbook you used before but in your custom EE! That means we shouldn't have to use a `requirements.yml` file to automatically load the needed collection because `containers.podman` is already included in the EE.
+This time we'll run the Playbook you used before, but in your custom EE! That means we shouldn't have to use a `requirements.yml` file to automatically load the needed collection because `containers.podman` is already included in the EE.
 
-* Create a new **Project** using `https://github.com/ansible-learnfest/ee-flow.git` **with the branch `wo-requirements`.** (This branch contains no `requirement.yml` to automatically add the collection)
-* Create a **Job Template** with the same settings as in the `Using Private Automation Hub` chapter with one exception:
-  * **Use your new custom Execution Environment**
-* Enable `node3` in the **Workshop Inventory**
-* Run the Playbook and check the outcome
+* Create a new **Project** using `https://github.com/ansible-learnfest/ee-flow.git` **with the branch `wo-requirements`**. This branch contains no `requirement.yml` to automatically add the collection. If you want to double check, have a look a the Job output and you'll notice that no collection was installed during project sync.
+* Create a **Job Template** with the same settings as in the `Using Private Automation Hub` chapter, or just create a copy of it. We want to make one change in the copied job template:
+* Set the **Execution Environment** to the you just created in the previous section of this lab.
+* Edit your  **Workshop Inventory** and activate `node3` and remove or disable other nodes.
+* Run the Job Template and check the outcome
 
 ### Challenge tasks
 

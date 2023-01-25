@@ -37,7 +37,8 @@ sudo yum install ansible-builder
 In the previous chapter you have learned how you can still use collections not contained in an Execution Environment in a Playbook. But in many cases you'll start building custom EE's at some point containing collections you use frequently in your Ansible content.
 
 In this chapter you'll do exactly this: build a custom Execution Environment.
-#### Checkout repo
+
+#### Check out repo
 
 We have prepared a repository with the needed content to build the EE image. Go and clone the repo to your VS Code terminal:
 
@@ -47,7 +48,7 @@ git clone https://github.com/ansible-learnfest/ee-flow.git
 
 #### Login to registry.redhat.io
 
-As the base image will be pulled from the Red hat container registry, you have to login in the VS Code terminal:
+As the base image will be pulled from the Red hat container registry, you have to login with your personal Red Hat login credentials (the one you use on [access.redhat.com](https://access.redhat.com)) in the VS Code terminal:
 
 ```bash
 podman login registry.redhat.io
@@ -93,7 +94,7 @@ For this we run a Playbook in the runtime environment the EE provides. Because `
 * Configure `ansible-navigator` to use the previously created EE either by
   * specifying it on the command line
   * or by creating an `ansible-navigator.yml` configuration file.
-* To specify the EE image on the commandline, look for `Specify the name of the execution environment image` in the output of `ansible-navigator --help`.
+* To specify the EE image on the command line, look for `Specify the name of the execution environment image` in the output of `ansible-navigator --help`.
 * Or if you prefer to make the necessary changes in the (already existing) `~/.ansible-navigator.yaml` file:
 
 ```yaml
@@ -111,20 +112,35 @@ ansible-navigator:
 
 Now we finally want to run a Playbook to test the new EE. The demo Playbook you used before in Automation Controller is part of the GitHub repo `ee-flow` you checked out already. So we just need an inventory to go with it.
 
-* Edit the inventory file `~/lab_inventory/hosts` and comment out the nodes `ansible-1`, `node1` and `node3`
+* Copy the inventory so we can modify it
+
+```bash
+cp /etc/ansible/hosts lab_inventory.ini
+```
+
+* Edit the inventory file `~/ee-flow/ansible-builder/lab_inventory.ini` and remove or comment out all nodes except 'node2'. The result should look something like this (note all other lines are removed!):
+
+```ini
+[managed_nodes]
+#node1.<LABID>.internal
+node2.<LABID>.internal
+#node3.<LABID>.internal
+```
+
 * Start `ansible-navigator` and run the Playbook:
-  * `:run ~/ee-flow/deploy-container.yml -i ~/lab_inventory/hosts`
+  * `:run ~/ee-flow/deploy-container.yml -i ~/ee-flow/ansible-builder/lab_inventory.ini`
   * While it's running look at the task execution by hitting a line number.
   * After the run has finished, leave `ansible-navigator` with multiple `ESC`
   * Check the deployment worked:
+
 ```bash
 curl node2
 ```
 
-There is a commandline parameter to `ansible-navigator` that makes the run and output mimic `ansible-playbook`, that is not jumping into the TUI interface, give it a try:
+There is a command line parameter to `ansible-navigator` that makes the run and output mimic `ansible-playbook`, that is not jumping into the TUI interface, give it a try:
 
 ```bash
-ansible-navigator run ~/ee-flow/deploy-container.yml -i ~/lab_inventory/hosts -m stdout
+ansible-navigator run ~/ee-flow/deploy-container.yml -i ~/ee-flow/ansible-builder/lab_inventory.ini -m stdout
 ```
 
 ### Goals

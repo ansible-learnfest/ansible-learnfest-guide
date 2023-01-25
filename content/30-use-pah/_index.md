@@ -27,7 +27,7 @@ Let's start, as the docs for this are distributed over some places we'll give so
 In this lab your automation controller is already configured to fetch collections from the private automation hub. We want to additionally also disable direct retrieval of collections from Ansible Galaxy.
 
 * Open the `default` **Organization** in Automation Controller and click **Edit**
-* Have a look at the **Galaxy Credentials** field. There is only one credential pointing to Ansible Galaxy. This is the default.
+* Have a look at the **Galaxy Credentials** field. There are already four credentials pointing to Ansible Galaxy and your private automation hub.
 * Make sure the credentials for your private automation hub are enabled, and **disable** the "Ansible Galaxy" credential.
 * Click **Save**
 
@@ -88,7 +88,7 @@ Verify the sync of the collections in **Collections** -> **Collections**, switch
 
 Now check that Automation Controller can actually use the content from your PAH. Let's first sync our project again and the error message should disappear.
 
-Before we can test our Playbook, we have to create an inventory. Create an inventory called **Workshop Inventory** and populate it with the servers listed in `/etc/ansible/hosts` in the "managed_nodes" section:
+Before we can test our Playbook, we have to create an inventory. Create an inventory called **Workshop Inventory** and populate it with the unique name of `node1` listed in `/etc/ansible/hosts` in the "managed_nodes" section:
 
 ```bash
 $ cat /etc/ansible/hosts
@@ -99,6 +99,10 @@ node1.<LABID>.internal
 node2.<LABID>.internal
 node3.<LABID>.internal
 ```
+
+{{% notice warning %}}
+Make sure you only create `node1`, we will need the other nodes later!
+{{% /notice %}}
 
 We also have to create machine credentials for these servers. Let's create machine credentials called **Workshop Credentials**. You can use your private key and username "ec2-user":
 
