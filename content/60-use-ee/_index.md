@@ -5,60 +5,55 @@ weight = 60
 
 ## Use the EE in controller
 
+You have tested running a Playbook that depends on the Podman collection with `ansible-navigator`. Now it's time to use the custom EE with the Podman collection in Automation Controller.
 ### Prerequisites
 
-* Publish an EE to private automation hub
-
-* Configure controller to access the private automation hub and pull the EE
+* The custom EE was pushed and is published in PAH
 
 ### Tasks
 
+* Check Automation Controller is configured to use EE's in PAH
+* Use the custom EE in Controller
 ### Configure EE in Controller
 
-* Check the **Credential** Automation Hub Container Registry point to the PAH
-
-  * **Name**: private automation hub
-
+* Check the **Credential** `Automation Hub Container Registry` points to PAH
+  * **Name**: Automation Hub Container Registry
   * **Organization**: Default
-
   * **Credential Type**: Container Registry
-
   * **Authentication URL**:
-
   * **Username**: admin
-
   * **Password**: &lt;your secret password>
-
   * **Verify SSL**: disabled
 
 {{% notice note %}}
-You can find the Authentication URL on your private automation hub by navigating to **Execution Environments**, select the EE you want to use and then in the **Details**.
+You can find the Authentication URL on your private automation hub by navigating to **Execution Environments**, select the EE you want to use and then in **Details**.
 {{% /notice %}}
 
 * Go to `Execution Environments` and add the new EE
-
   * **Name**: ee-ansible-demo
-
-  * **Image**: hub-student.LABID.example.opentlc.com/ee-ansible-ssa/latest
-
+  * **Image**: \<PAH URL>/\<image name>:\<tag>
   * **Pull**: Always
-
-  * **Credential**: private automation hub
-
+  * **Registry Credential**: Automation Hub Container Registry
   * **Organization**: Default
 
-* Create a job template using the newly created EE
+{{% notice note %}}
+Get the image location from your PAH: In **Execution Environemnts** click the image.
+{{% /notice %}}
 
-* Test a playbook with the collection you added to the EE, e.g. deploy a new container
+### Bring it all together
 
-* There is an example playbook available in the [deploy-container.yml](https://github.com/ansible-learnfest/ee-flow) project
+This time we'll run the Playbook you used before but in your custom EE! That means we shouldn't have to use a `requirements.yml` file to automatically load the needed collection because `containers.podman` is already included in the EE.
+
+* Create a new **Project** using `https://github.com/ansible-learnfest/ee-flow.git` **with the branch `wo-requirements`.** (This branch contains no `requirement.yml` to automatically add the collection)
+* Create a **Job Template** with the same settings as in the `Using Private Automation Hub` chapter with one exception:
+  * **Use your new custom Execution Environment**
+* Enable `node3` in the **Workshop Inventory**
+* Run the Playbook and check the outcome
 
 ### Challenge tasks
 
 * Build another EE with different content, import it into Controller and use different job templates with different EE’s
-
 * Think about version pinning in the EE: what’s the best way to do it? How can you track versioning?
-
 * If you use GitLab or GitHub have a look at [RenovateBot](https://renovatebot.com) which can help you to track dependencies. [https://docs.renovatebot.com/](https://docs.renovatebot.com/)
 
 ### Goal
