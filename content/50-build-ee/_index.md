@@ -93,7 +93,7 @@ For this we run a Playbook in the runtime environment the EE provides. Because `
 * Configure `ansible-navigator` to use the previously created EE either by
   * specifying it on the command line
   * or by creating an `ansible-navigator.yml` configuration file.
-* To specify the EE image on the commandline, look for `Specify the name of the execution environment image` in the output of `ansible-navigator --help`.
+* To specify the EE image on the command line, look for `Specify the name of the execution environment image` in the output of `ansible-navigator --help`.
 * Or if you prefer to make the necessary changes in the (already existing) `~/.ansible-navigator.yaml` file:
 
 ```yaml
@@ -117,11 +117,12 @@ Now we finally want to run a Playbook to test the new EE. The demo Playbook you 
   * While it's running look at the task execution by hitting a line number.
   * After the run has finished, leave `ansible-navigator` with multiple `ESC`
   * Check the deployment worked:
+
 ```bash
 curl node2
 ```
 
-There is a commandline parameter to `ansible-navigator` that makes the run and output mimic `ansible-playbook`, that is not jumping into the TUI interface, give it a try:
+There is a command line parameter to `ansible-navigator` that makes the run and output mimic `ansible-playbook`, that is not jumping into the TUI interface, give it a try:
 
 ```bash
 ansible-navigator run ~/ee-flow/deploy-container.yml -i ~/lab_inventory/hosts -m stdout

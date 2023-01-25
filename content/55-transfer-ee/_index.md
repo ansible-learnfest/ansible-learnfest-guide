@@ -25,7 +25,7 @@ Pusing an EE to the PAH registry is pretty straight forward: You just use Podman
 
 * The URL, this is the same as the PAH web UI
 * Username/password, again same as for the web UI
-* Disable certificate verification becasue our PAH uses a self-signed certificate
+* Disable certificate verification because our PAH uses a self-signed certificate
 
 The just do the following:
 

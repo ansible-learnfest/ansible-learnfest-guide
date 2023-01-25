@@ -18,7 +18,7 @@ Make sure you can access your VS Code Server instance using the credentials prov
 We found a bug last minute in the blueprint we use for this lab. Please run this command to make sure yamllint is not installed from EPEL:
 
 ```bash
-yum distro-sync --disablerepo=epel
+sudo yum distro-sync --disablerepo=epel
 ```
 
 ### Tasks
