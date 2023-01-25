@@ -6,6 +6,7 @@ weight = 60
 ## Use the EE in controller
 
 You have tested running a Playbook that depends on the Podman collection with `ansible-navigator`. Now it's time to use the custom EE with the Podman collection in Automation Controller.
+
 ### Prerequisites
 
 * The custom EE was pushed and is published in PAH
@@ -37,7 +38,7 @@ You can find the Authentication URL on your private automation hub by navigating
   * **Organization**: Default
 
 {{% notice note %}}
-Get the image location from your PAH: In **Execution Environemnts** click the image.
+Get the image location from your PAH: In **Execution Environments** click the image.
 {{% /notice %}}
 
 ### Bring it all together

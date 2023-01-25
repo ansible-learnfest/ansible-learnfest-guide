@@ -37,7 +37,8 @@ sudo yum install ansible-builder
 In the previous chapter you have learned how you can still use collections not contained in an Execution Environment in a Playbook. But in many cases you'll start building custom EE's at some point containing collections you use frequently in your Ansible content.
 
 In this chapter you'll do exactly this: build a custom Execution Environment.
-#### Checkout repo
+
+#### Check out repo
 
 We have prepared a repository with the needed content to build the EE image. Go and clone the repo to your VS Code terminal:
 
