@@ -31,12 +31,13 @@ In this lab your automation controller was already configured during installatio
 * Click **Save**
 
 {{% notice note %}}
-You could add more credentials here, the order of these credentials sets precedence for the sync and lookup of the content. Feel free to click the magnifying glass for **Galaxy Credentials** to see how you could add/remove and change the order of credentials, but change nothing.
+You could add more credentials here, the order of these credentials sets precedence for the sync and lookup of the content.
 {{% /notice %}}
 
 {{% notice note %}}
 It's important to note that the PAH credentials are added automatically during an installation of Automation Controller and PAH in one installer run. If you add PAH later you have to configure the credentials yourself!
 {{% /notice %}}
+
 ### Setup demo project
 
 Before we configure content synchronization, we want to add a demo project:
@@ -91,7 +92,7 @@ Verify the sync of the collections in **Collections** -> **Collections**, switch
 
 ### Test Private Automation Hub Integration
 
-Now check that Automation Controller can actually use the content from your PAH. Let's first sync our project again and the error message should disappear because now the collection is available to Automation Controller on PAH.
+Now check that Automation Controller can actually use the content from your PAH. Let's first sync our project again and the error message should disappear because now automation controller can download and install the collection from your private automation hub.
 
 Before we can test with an actual Playbook, we have to create an inventory in Automation Controller. Create an inventory called **Workshop Inventory** and populate it with the unique name of `node1` listed in `/etc/ansible/hosts` in the "managed_nodes" section:
 
@@ -117,7 +118,7 @@ cat .ssh/<LABID>key.pem
 
 For a proper end to end test, let's create a **Job Template** that uses the `containers.podman` collection which is not part of the included Execution Environments:
 
-* Sync the project you created earlier again and check it runs successfully. You should notice from the job output that the task which install collections from the `requirements.yml` is succeeding.
+* Sync the project you created earlier again and check it runs successfully. You should notice from the job output that the task which installs collections from the `requirements.yml` is now succeeding.
 
 * Create a new **Job Template**:
   * **Name**: up to you
@@ -130,7 +131,7 @@ For a proper end to end test, let's create a **Job Template** that uses the `con
 
 * Launch the **Template**
 
-It should now run and deploy an httpd container on node1 that is hosting a small website. Test it from the terminal in VS Code Server:
+It should now run and deploy an httpd container on `node1` that is hosting a small website. Test it from the terminal in VS Code Server:
 
 ```bash
 curl node1
