@@ -51,11 +51,45 @@ This time we'll run the Playbook you used before, but in your custom EE! That me
 * Edit your  **Workshop Inventory**: add `node3.<LABID>.internal` and disable `node1.<LABID>.internal`.
 * Run the Job Template and check the outcome
 
-### Challenge tasks
+### And finally: The Challenge
 
-* Build another EE with different content, import it into Controller and use different job templates with different EE’s
-* Think about version pinning in the EE: what’s the best way to do it? How can you track versioning?
-* If you use GitLab or GitHub have a look at [RenovateBot](https://renovatebot.com) which can help you to track dependencies. [https://docs.renovatebot.com/](https://docs.renovatebot.com/)
+Now that you have learned how all the stages of building, testing, pushing and using a custom Execution Environment work, do it without help from the guide. Here are your tasks:
+
+* The Playbook `enforce-selinux.yml` in `https://github.com/ansible-learnfest/playbooks-challenge.git` should be run with your custom EE against your managed nodes.
+* It uses a collection that **is not part of your EE** yet.
+
+So this is what you have to do:
+
+* Add the needed collection to your EE definition and build a new version.
+* Because the collection comes from Red Hat Automation Hub and not Ansible Galaxy, you need to create a `ansible.cfg` like this (fill in your AH token):
+
+```
+[galaxy]
+server_list = automation_hub
+
+[galaxy_server.automation_hub]
+url=https://cloud.redhat.com/api/automation-hub/
+auth_url=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+token=my_ah_token
+```
+
+* Tell `ansible-builder` in the definition file to read the `ansible.cfg` file:
+
+```
+[...]
+dependencies:
+  galaxy: requirements.yml
+  python: requirements.txt
+  system: bindep.txt
+
+ansible_config: /path/to/ansible.cfg
+[...]
+```
+
+* Using `ansible-navigator` inspect the new image to contain the needed collection
+* Push the new image to your PAH
+* Create a **Job Template** using the **Project** with the `enforce-selinux.yml` Playbook and the new version of the EE
+* Run it!
 
 ### Goal
 
