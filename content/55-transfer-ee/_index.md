@@ -5,7 +5,7 @@ weight = 55
 
 ## Transfer your Execution Environment to Private Automation Hub
 
-So by now you have seen how to use a collection that is not included in one of the official EE's and in the next step how to build a custom EE with the required collection and testing it.
+By now you have learned how to use a collection that is not included in one of the official EE's and in the next step how to build a custom EE with the required collection and testing it.
 
 The next step is to get your custom EE into a container registry so it can be used in Automation Controller. And since PAH provides a container registry, too, we'll use it.
 
@@ -37,10 +37,10 @@ Then just do the following:
 podman login <PAH hostname>
 podman images
 podman tag localhost/ee-ansible-demo:0.1.0  <PAH hostname>/ee-ansible-demo:latest
-podman push localhost/ee-ansible-demo:0.1.0 <PAH hostname>/ee-ansible-demo
+podman push <PAH hostname>/ee-ansible-demo
 ```
 
-* Check the image is in PAH: Log into the Web UI of your automation hub and you will find the execution environment in the **Execution Environments** menu.
+* Check the image is in PAH: Log into the Web UI of your automation hub and you should find the execution environment in the **Execution Environments** menu.
 
 ### Goals
 

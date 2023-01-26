@@ -15,10 +15,10 @@ Because your lab was deployed from RHPDS you already have VS Code Server (basica
 
 Make sure you can access your VS Code Server instance using the credentials provided.
 
-We found a bug last minute in the blueprint we use for this lab. Please run this command to make sure "yamllint" and its dependencies are not installed from EPEL:
+We found a bug last minute in the blueprint we use for this lab. Please open a terminal in VS Code Server and run this command to make sure "yamllint" and its dependencies are not installed from EPEL:
 
 ```bash
-sudo yum distro-sync --disablerepo=epel
+sudo yum distro-sync --disablerepo=epel -y
 ```
 
 ### Tasks
@@ -26,7 +26,7 @@ sudo yum distro-sync --disablerepo=epel
 * Make sure the extension is installed (Hint: **Extensions** menu on the left navigation bar, or from the **View** menu.)
 
 {{% notice warning %}}
-Double check you have the latest version of the Ansible extension by Red Hat and remove older or other versions. You might see a "reload" button next to the extension which you need to click to complete the installation.
+Double check you have the latest version of the **Ansible extension by Red Hat** and remove older or other versions. You might see a "reload" button next to the extension which you need to click to complete the installation.
 {{% /notice %}}
 
 You can now test the extension by performing the following tasks.
@@ -58,6 +58,3 @@ Get familiar with the Ansible VS Code extension features.
 
 Although VSCode of course runs on Linux, Mac and Windows, there are some extra tasks to be done to get Ansible working on Windows or Mac. It's beyond the scope of this manual to provide detailed instructions on how to setup Podman and Ansible on Windows or Mac.
 
-### Challenge Tasks
-
-Try to configure VSCode to use Ansible inside an execution environment. The EE supported is already installed on the bastion host and can be used for these experiments.

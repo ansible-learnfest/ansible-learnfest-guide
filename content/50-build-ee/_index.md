@@ -83,7 +83,7 @@ We're using the `-v 3` flags to get more detailed output from `ansible-builder` 
 podman images
 ```
 
-As said `podman` is used to actually build the image, the `Containerfile` needed is created by `ansible-builder`. Please take the time to locate it and have a look at it.
+As `podman` is used to actually build the image, the `Containerfile` needed by Podman is created by `ansible-builder`. Please take the time to locate it and have a look at it.
 
 #### Use the Execution Environment
 
@@ -93,9 +93,9 @@ For this we run a Playbook in the runtime environment the EE provides. Because `
 
 * Configure `ansible-navigator` to use the previously created EE either by
   * specifying it on the command line
-  * or by creating an `ansible-navigator.yml` configuration file.
+  * or by creating an `.ansible-navigator.yml` configuration file.
 * To specify the EE image on the command line, look for `Specify the name of the execution environment image` in the output of `ansible-navigator --help`.
-* Or if you prefer to make the necessary changes in the (already existing) `~/.ansible-navigator.yaml` file:
+* Or if you prefer to use a config file, create a `~/.ansible-navigator.yaml` dot-file and add this content:
 
 ```yaml
 ---
@@ -104,9 +104,11 @@ ansible-navigator:
     image: ee-ansible-demo:0.1.0
 ```
 
-* After pointing to our new EE, run `ansible-navigator` and start to explore its features. Navigating is straight forward, try the following:
+* After pointing to our new EE, run `ansible-navigator` and start to explore its features. Navigating is straight forward, first check the `ee-ansible-demo` EE contains the `containers.podman` collection:
   * Get a list of included collections with `:collections` on the start page. `ESC` always takes you back one step in the menu structure.
-  * Inspect the image with `:images`
+
+Then have a look at the included EE images:
+  * Inspect the image with `:images`, choose an image by typing the row number
   * Just look around and remember `ESC` is your friend when you got lost in menus items...
 * Exit `ansible-navigator`
 
@@ -129,7 +131,7 @@ node2.<LABID>.internal
 
 * Start `ansible-navigator` and run the Playbook:
   * `:run ~/ee-flow/deploy-container.yml -i ~/ee-flow/ansible-builder/lab_inventory.ini`
-  * While it's running look at the task execution by hitting a line number.
+  * While it's running enter the line number for the play `deploy httpd container`, this will bring you to the task list from where you can inspect the running tasks.
   * After the run has finished, leave `ansible-navigator` with multiple `ESC`
   * Check the deployment worked:
 
