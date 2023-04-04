@@ -63,7 +63,7 @@ So this is what you have to do:
 * Add the needed collection to your EE definition and build a new version.
 * Because the collection comes from Red Hat Automation Hub and not Ansible Galaxy, you need to create a `ansible.cfg` like this (fill in your AH token):
 
-```
+```ini
 [galaxy]
 server_list = automation_hub
 
@@ -75,7 +75,7 @@ token=my_ah_token
 
 * Tell `ansible-builder` in the definition file to read the `ansible.cfg` file:
 
-```
+```yaml
 [...]
 dependencies:
   galaxy: requirements.yml

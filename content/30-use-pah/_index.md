@@ -100,13 +100,22 @@ Now check that automation controller can actually use the content from your PAH.
 
 Before we can test with an actual Playbook, we have to create an inventory in automation controller. To create a dynamic inventory for AWS, we first have to create the necessary credentials. Create store your AWS credentials in controller and call them **AWS LearnFest**. Create an inventory called **LearnFest Inventory** with ec2 as dynamic inventor source and the **AWS LearnFest** credentials you just created.
 
-After an inventory sync, you should see your automation controller, private automation hub and three nodes (node1 to node3).
+By default the EC2 dynamic inventory plugin will use the FQDN of the instance as a host name. These FQDN's are very long and not very useful. To make your inventory nice and clean, add the following settings to your inventory source variables:
 
-We also have to create machine credentials for these servers. Let's create machine credentials called **LearnFest Credentials**. Use the private key provided by your instructor and set the username to `ec2-user`.
+```yaml
+hostnames:
+  - tag:Name
+compose:
+  ansible_host: public_dns_name
+```
 
-For a proper end to end test, let's create a **Job Template** that uses the `containers.podman` collection which is not part of the included Execution Environments:
+After an inventory sync, you should see your automation controller, private automation hub and three nodes (node1 to node3) in the **Hosts** menu..
 
-* Sync the project you created earlier again and check it runs successfully. You should notice from the job output that the task which installs collections from the `requirements.yml` is now succeeding.
+We also have to create machine credentials for these instances. Let's create machine credentials called **LearnFest Credentials**. Use the private key provided by your instructor and set the username to `ec2-user`.
+
+For a proper end to end test, let's create a **Job Template** that uses the `containers.podman` collection, which is not yet part of the included Execution Environments:
+
+* Sync the project you created earlier again and check it runs successfully. You should notice from the job output that the task which installs collections from the `requirements.yml` is now succeeding. You can even see in the JSON output that controller installed the collection from your private automation hub.
 
 * Create a new **Job Template**:
   * **Name**: up to you
@@ -114,7 +123,10 @@ For a proper end to end test, let's create a **Job Template** that uses the `con
   * **Project**: The one you just created
   * **Execution Environment**: `Ansible Engine 2.9 execution environment`
   * **Playbook**: `deploy-container.yml`
-  * Set the right **Credentials** : `LearnFest Credentials` and `AWS LearnFest`
+  * Add the right **Credentials**
+    * Machine credentials: `LearnFest Credentials`
+    * AWS Credentials:`AWS LearnFest`
+  * **Limit**: node1
   * Check **Privilege Escalation**
 
 * Launch the **Template**

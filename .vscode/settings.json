@@ -9,6 +9,8 @@
         "LABID",
         "nocolor",
         "podman",
+        "rhsm",
+        "rpms",
         "Skopeo",
         "virtualenv",
         "YOURPASSWORD"
