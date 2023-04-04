@@ -16,7 +16,7 @@ This makes the execution of an ansible playbook more scalable, reliable and pred
 
 ### Prerequisites
 
-Install `ansible-builder` in your lab environment: on RHEL this is provided by the AAP repo, on Fedora you will need `pip install ansible-builder`, it’s recommended to use a virtual environment in this case.
+Install `ansible-builder` in your lab environment: on RHEL this is provided by the AAP repo, on Fedora you will need `pip install ansible-builder`, it’s recommended to use a [Python virtual environment](https://docs.python.org/3/library/venv.html) in this case.
 
 {{% notice note %}}
 `ansible-builder` is a high-level tool for building AAP Execution Environments that abstracts away a lot of the intricacies of container image building. Under the hood it uses `podman`, of course.
@@ -29,7 +29,7 @@ virtualenv ansible-builder
 . ansible-builder/bin/activate
 pip install -U pip ansible-builder
 # If you are on RHEL and the AAP repo is enabled
-sudo yum install ansible-builder
+yum install ansible-builder
 ```
 
 ### Tasks
@@ -87,7 +87,7 @@ As `podman` is used to actually build the image, the `Containerfile` needed by P
 
 #### Use the Execution Environment
 
-Before we push a custom EE to a registry and use it in Automation Controller we want to make sure it provides what we need to run our Playbooks with all dependencies. Basically check if it works... :-)
+Before we push a custom EE to a registry and use it in automation controller we want to make sure it provides what we need to run our Playbooks with all dependencies. Basically check if it works... :-)
 
 For this we run a Playbook in the runtime environment the EE provides. Because `ansible-playbook` can't do this, we need to use the second new tool on the block, `ansible-navigator`:
 
@@ -108,11 +108,12 @@ ansible-navigator:
   * Get a list of included collections with `:collections` on the start page. `ESC` always takes you back one step in the menu structure.
 
 Then have a look at the included EE images:
-  * Inspect the image with `:images`, choose an image by typing the row number
-  * Just look around and remember `ESC` is your friend when you got lost in menus items...
+
+* Inspect the image with `:images`, choose an image by typing the row number
+* Just look around and remember `ESC` is your friend when you got lost in menus items...
 * Exit `ansible-navigator`
 
-Now we finally want to run a Playbook to test the new EE. The demo Playbook you used before in Automation Controller is part of the GitHub repo `ee-flow` you checked out already. So we just need an inventory to go with it.
+Now we finally want to run a Playbook to test the new EE. The demo Playbook you used before in automation controller is part of the GitHub repo `ee-flow` you checked out already. So we just need an inventory to go with it.
 
 * Copy the inventory so we can modify it
 
@@ -136,6 +137,7 @@ node2.<LABID>.internal
   * Check the deployment worked:
 
 ```bash
+# you can find the FQDN of the instance in your automation controller in the **Hosts** menu
 curl node2
 ```
 

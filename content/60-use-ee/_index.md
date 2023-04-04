@@ -5,7 +5,7 @@ weight = 60
 
 ## Use the EE in controller
 
-You have tested running a Playbook that depends on the Podman collection with `ansible-navigator` in your custom Execution Environment. Now it's time to use the custom EE with the Podman collection in Automation Controller.
+You have tested running a Playbook that depends on the Podman collection with `ansible-navigator` in your custom Execution Environment. Now it's time to use the custom EE with the Podman collection in automation controller.
 
 ### Prerequisites
 
@@ -13,7 +13,7 @@ You have tested running a Playbook that depends on the Podman collection with `a
 
 ### Tasks
 
-* Check Automation Controller is configured to use EE's in PAH
+* Check automation controller is configured to use EE's in PAH
 * Use the custom EE in Controller
 
 ### Configure EE in Controller
@@ -46,7 +46,7 @@ Get the image location from your PAH: In **Execution Environments** click the im
 This time we'll run the Playbook you used before, but in your custom EE! That means we shouldn't have to use a `requirements.yml` file to automatically load the needed collection because `containers.podman` is already included in the EE.
 
 * Create a new **Project** using `https://github.com/ansible-learnfest/ee-flow.git` **with the branch `wo-requirements`**. This branch contains no `requirement.yml` to automatically add the collection. If you want to double check, have a look a the Job output and you'll notice that no collection was installed during project sync.
-* Create a **Job Template** with the same settings as in the `Using Private Automation Hub` chapter, or just create a copy of it. We want to make one change in the copied job template:
+* Create a **Job Template** with the same settings as in the `Using private automation hub` chapter, or just create a copy of it. We want to make one change in the copied job template:
   * Set the **Execution Environment** to `ee-ansible-demo` you just created in the previous section of this lab.
 * Edit your  **Workshop Inventory**: add `node3.<LABID>.internal` and disable `node1.<LABID>.internal`.
 * Run the Job Template and check the outcome
