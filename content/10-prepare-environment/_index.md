@@ -73,6 +73,16 @@ Among other things, the Playbook will perform the following actions:
 
 The deploy playbook is idempotent - in case of an error you can launch it again safely.
 
+You can access your AAP installation with the following details:
+
+- FQDN automation controller: controller-&lt;username&gt;.learnfest.ansible-labs.de
+
+- FQDN private automation hub: hub-&lt;username&gt;.learnfest.ansible-labs.de
+
+- Username: admin
+
+- Password: the one you set in step "Create student environment"
+
 ### Optional VS Code Server
 
 You can use your own machine to write all the code necessary for participating in the LearnFest. For this, you will need the following tools:
@@ -86,3 +96,9 @@ You can use your own machine to write all the code necessary for participating i
 - ansible-builder
 
 If you don't have a system available with these tools, you can launch the "Deploy VS Code Server" from the LearnFest automation controller. This will deploy an instance with the Web Version of VS Code pre-installed into your AWS account. `ansible-builder` and `ansible-navigator` are not already installed on VS Code Server.
+
+You can access your VS Code Server with the following details:
+
+- FQDN VS Code Server: vscode-&lt;username&gt;.learnfest.ansible-labs.de
+
+- Password: the one you set in step "Create student environment"
