@@ -74,6 +74,10 @@ If you do not have organization admin privileges, you will not able able to turn
     * Click **Save** and then hit **Sync**. This will sync all enabled and updated collections from Red Hat Automation Hub to your private automation hub.
 * After the sync process has finished, check the certified collections are visible on PAH.
 
+{{% notice note %}}
+If you attend an in person Ansible LearnFest and you do not have an RHN account with organization admin privileges, we will provide a sync URL and an token for you.
+{{% /notice %}}
+
 #### Sync selected community collections from Ansible Galaxy to PAH
 
 Galaxy is configured as the remote `community` out of the box. Follow the instructions to configure the synchronization.

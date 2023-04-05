@@ -13,6 +13,10 @@ Students will need the following information to deploy their personal AAP instal
 
 - RHN Pool ID with an active Ansible Red Hat Automation Platform Subscription, typically it's the pool ID of your "Employee SKU", or "Red Hat Ansible Automation Platform"
 
+{{% notice note %}}
+If you attend an in person Ansible LearnFest, we will provide AWS credentials for you.
+{{% /notice %}}
+
 ### Create student environment
 
 Your instructor will provide you access credentials for the Ansible LearnFest automation controller. Navigate to the Job Template "LearnFest - Create Student environment" and fill out all details.
