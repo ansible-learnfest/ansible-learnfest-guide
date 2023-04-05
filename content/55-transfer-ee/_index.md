@@ -3,20 +3,20 @@ title = "Transfer Execution Environment"
 weight = 55
 +++
 
-## Transfer your Execution Environment to Private Automation Hub
+## Transfer your Execution Environment to private automation hub
 
 By now you have learned how to use a collection that is not included in one of the official EE's and in the next step how to build a custom EE with the required collection and testing it.
 
-The next step is to get your custom EE into a container registry so it can be used in Automation Controller. And since PAH provides a container registry, too, we'll use it.
+The next step is to get your custom EE into a container registry so it can be used in automation controller. And since PAH provides a container registry, too, we'll use it.
 
 ### Prerequisites
 
 * The (working) custom execution environment from the previous chapter
-* Access to your Private Automation Hub to store your EE
+* Access to your private automation hub to store your EE
 
 ### Tasks
 
-* Push your EE to your Private Automation Hub
+* Push your EE to your private automation hub
 * Add additional tags or labels and push them to the registry
 * Delete old versions of the EE
 

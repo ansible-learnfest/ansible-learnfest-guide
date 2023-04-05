@@ -7,8 +7,11 @@
         "distro",
         "epel",
         "LABID",
+        "learnfest",
         "nocolor",
         "podman",
+        "rhsm",
+        "rpms",
         "Skopeo",
         "virtualenv",
         "YOURPASSWORD"

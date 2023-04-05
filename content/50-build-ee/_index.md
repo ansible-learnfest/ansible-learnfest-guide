@@ -16,7 +16,7 @@ This makes the execution of an ansible playbook more scalable, reliable and pred
 
 ### Prerequisites
 
-Install `ansible-builder` in your lab environment: on RHEL this is provided by the AAP repo, on Fedora you will need `pip install ansible-builder`, it’s recommended to use a virtual environment in this case.
+Install `ansible-builder` in your lab environment: on RHEL this is provided by the AAP repo, on Fedora you will need `pip install ansible-builder`, it’s recommended to use a [Python virtual environment](https://docs.python.org/3/library/venv.html) in this case.
 
 {{% notice note %}}
 `ansible-builder` is a high-level tool for building AAP Execution Environments that abstracts away a lot of the intricacies of container image building. Under the hood it uses `podman`, of course.
@@ -29,7 +29,10 @@ virtualenv ansible-builder
 . ansible-builder/bin/activate
 pip install -U pip ansible-builder
 # If you are on RHEL and the AAP repo is enabled
-sudo yum install ansible-builder
+# enable the repository, if not already done
+subscription-manager config --rhsm.manage_repos 1
+subscription-manager repos --enable=ansible-automation-platform-2.3-for-rhel-9-x86_64-rpms
+yum install ansible-builder
 ```
 
 ### Tasks
@@ -87,13 +90,13 @@ As `podman` is used to actually build the image, the `Containerfile` needed by P
 
 #### Use the Execution Environment
 
-Before we push a custom EE to a registry and use it in Automation Controller we want to make sure it provides what we need to run our Playbooks with all dependencies. Basically check if it works... :-)
+Before we push a custom EE to a registry and use it in automation controller we want to make sure it provides what we need to run our Playbooks with all dependencies. Basically check if it works... :-)
 
 For this we run a Playbook in the runtime environment the EE provides. Because `ansible-playbook` can't do this, we need to use the second new tool on the block, `ansible-navigator`:
 
 * Configure `ansible-navigator` to use the previously created EE either by
   * specifying it on the command line
-  * or by creating an `.ansible-navigator.yml` configuration file.
+  * or by creating an `.ansible-navigator.yml` configuration file in your home directory
 * To specify the EE image on the command line, look for `Specify the name of the execution environment image` in the output of `ansible-navigator --help`.
 * Or if you prefer to use a config file, create a `~/.ansible-navigator.yaml` dot-file and add this content:
 
@@ -108,25 +111,18 @@ ansible-navigator:
   * Get a list of included collections with `:collections` on the start page. `ESC` always takes you back one step in the menu structure.
 
 Then have a look at the included EE images:
-  * Inspect the image with `:images`, choose an image by typing the row number
-  * Just look around and remember `ESC` is your friend when you got lost in menus items...
+
+* Inspect the image with `:images`, choose an image by typing the row number
+* Just look around and remember `ESC` is your friend when you got lost in menus items...
 * Exit `ansible-navigator`
 
-Now we finally want to run a Playbook to test the new EE. The demo Playbook you used before in Automation Controller is part of the GitHub repo `ee-flow` you checked out already. So we just need an inventory to go with it.
-
-* Copy the inventory so we can modify it
-
-```bash
-cp /etc/ansible/hosts lab_inventory.ini
-```
+Now we finally want to run a Playbook to test the new EE. The demo Playbook you used before in automation controller is part of the GitHub repo `ee-flow` you checked out already. So we just need an inventory to go with it.
 
 * Edit the inventory file `~/ee-flow/ansible-builder/lab_inventory.ini` and remove or comment out all nodes except 'node2'. The result should look something like this (note all other lines are removed!):
 
 ```ini
 [managed_nodes]
-#node1.<LABID>.internal
-node2.<LABID>.internal
-#node3.<LABID>.internal
+node2 ansible_host=<node 2 FQDN from EC2> ansible_user=ec2-user
 ```
 
 * Start `ansible-navigator` and run the Playbook:
@@ -136,6 +132,7 @@ node2.<LABID>.internal
   * Check the deployment worked:
 
 ```bash
+# you can find the FQDN of the instance in your automation controller in the **Hosts** menu
 curl node2
 ```
 

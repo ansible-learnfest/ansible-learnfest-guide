@@ -7,20 +7,6 @@ weight = 20
 
 We highly recommend making yourself familiar with Visual Studio Code and the Ansible extension. Even if you’re not planning to use it as your daily driver, it is good to know how it works to explain and show the benefit to customers.
 
-### Prerequisites
-
-{{% notice note %}}
-Because your lab was deployed from RHPDS you already have VS Code Server (basically VSCode in a browser) available in your lab environment. You don't have to install anything locally.
-{{% /notice %}}
-
-Make sure you can access your VS Code Server instance using the credentials provided.
-
-We found a bug last minute in the blueprint we use for this lab. Please open a terminal in VS Code Server and run this command to make sure "yamllint" and its dependencies are not installed from EPEL:
-
-```bash
-sudo yum distro-sync --disablerepo=epel -y
-```
-
 ### Tasks
 
 * Make sure the extension is installed (Hint: **Extensions** menu on the left navigation bar, or from the **View** menu.)
@@ -57,4 +43,3 @@ Get familiar with the Ansible VS Code extension features.
 ### Tips
 
 Although VSCode of course runs on Linux, Mac and Windows, there are some extra tasks to be done to get Ansible working on Windows or Mac. It's beyond the scope of this manual to provide detailed instructions on how to setup Podman and Ansible on Windows or Mac.
-
